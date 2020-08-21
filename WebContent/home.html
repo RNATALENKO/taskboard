@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>TaskBoard</title>
+</head>
+
+<script type="text/javascript" src="colorpicker.js"></script>
+
+<style>
+
+	/*color picker tip*/
+	
+	
+
+
+</style>
+
+
+
+<body>
+
+	<!-- title/nav -->
+	<div style="margin:10px; padding:20px; border-bottom:1px solid #e3e3e3; text-align:center; font-size:30px; box-shadow:0px 1px 3px #e3e3e3; "> My fancy to do list</div>
+	
+	
+	<!-- note container  -->
+	<div id="inputcontainer" style="display:flex; background-color: #e3e3e3; margin:10px;">
+	
+		<div style="display:flex; margin:auto;">
+		
+			<div id="notecontainer" style="width:300px;">
+				<input value="task title " style="width:175px; outline: none; border:.5px solid black; display:block; margin:20px; ">
+				<textarea value="Stat a task..." style="width: 175px; resize:none; outline:none; margin:20px;" rows="10"></textarea>	
+			</div>
+			
+			<div id="addnotecontainer">
+				<div>
+					<button style ="margin:20px;">Add task</button>
+				</div>
+				
+				<!-- color picker  -->
+				<div id="buttonpickercontaienr">
+				
+						<button id="addcolorbutton" style ="margin:20px;">Add Color</button>
+		
+						<div id="colorpicker" style="background-color:orange; width:inherit; height:90px; margin:auto; display:none;">
+							<ul id="colorlist" style="list-style:none; display:flex; padding-left:0px;" >
+								<li><div style="height:20px; width:20px; background-color:red;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
+							</ul>
+						</div>
+						
+						<script>showPicker(); selectColors();</script>	
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	<!-- open/finished tasks view -->
+	<div id="maintaskcontainer" style="background-color:lightgrey; margin:10px; display:flex;">
+	
+		<div id="opentaskcontainer" style="width:50%; height: 500px; background-color:lightgreen;">
+			<h3 style="text-align: center; padding:20px; background-color:orange; margin-top:0px;">Open tasks</h3>
+			
+			
+			<div id="tasklistcontainer">
+			
+			</div>
+		
+		</div>
+	
+		<div id="finishedtaskcontainer" style="width:50%; height: 500px; ">
+		
+		</div>
+	
+	
+	</div>
+	
+	
+	
+	
+	
+	
+</body>
+</html>

@@ -9,7 +9,15 @@
 
 <style>
 
-	/*color picker tip*/
+	/*task spacing on task list*/
+	#tasklist > li {
+		height:80px;
+		width:250px;
+		margin:20px;
+		margin-bottom:0px;
+		margin-right:0px;
+		background-color: yellow;
+	}
 	
 	
 
@@ -31,7 +39,7 @@
 		
 			<div id="notecontainer" style="width:300px;">
 				<input value="task title " style="width:175px; outline: none; border:.5px solid black; display:block; margin:20px; ">
-				<textarea value="Stat a task..." style="width: 175px; resize:none; outline:none; margin:20px;" rows="10"></textarea>	
+				<textarea id="textbox" value="Stat a task..." style="width: 175px; resize:none; outline:none; margin:20px; background-color:white;" rows="10"></textarea>	
 			</div>
 			
 			<div id="addnotecontainer">
@@ -40,20 +48,31 @@
 				</div>
 				
 				<!-- color picker  -->
+				<!-- when color picker display appears divs shift slightly left, need to fix bug, prolly need absolute positioning -->
+				
+				<!-- also need to create wrap so colors break  -->
+				
 				<div id="buttonpickercontaienr">
 				
 						<button id="addcolorbutton" style ="margin:20px;">Add Color</button>
 		
-						<div id="colorpicker" style="background-color:orange; width:inherit; height:90px; margin:auto; display:none;">
-							<ul id="colorlist" style="list-style:none; display:flex; padding-left:0px;" >
+						<div id="colorpicker" style="background-color:orange; width:inherit; height:90px; margin:auto; display:none; border-radius:10px 10px 10px 10px; position:absolute;">
+							<ul id="colorlist" style="list-style:none; display:flex; padding-left:0px; padding:20px;" >
 								<li><div style="height:20px; width:20px; background-color:red;"></div></li>
 								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
 								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
 								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:coral;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:purple;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:peachpuff;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:lightgrey;"></div></li>
 							</ul>
 						</div>
 						
 						<script>showPicker(); selectColors();</script>	
+						
+						
+						
 				</div>
 			</div>
 		</div>
@@ -68,11 +87,43 @@
 		<div id="opentaskcontainer" style="width:50%; height: 500px; background-color:lightgreen;">
 			<h3 style="text-align: center; padding:20px; background-color:orange; margin-top:0px;">Open tasks</h3>
 			
+			<div id="tasklistcontainer" style="background-color:peachpuff;">
 			
-			<div id="tasklistcontainer">
-			
+				<ul id="tasklist" style="list-style:none; margin:auto;display:flex; flex-wrap:wrap;">
+				
+				
+				
+					<!--task items layout  -->
+					<!-- need to prevent line break with long title instead hide overflow  -->
+					<li>
+						<div style="display:flex;">
+							<div style="display:block;background-color:red; hieght:inherit; width:180px;"> 
+							
+								<h2 style="margin:0px;background-color: green; margin-top:25px; padding-left:5px">This is a long </h2>
+								
+								
+								<div style="background-color:blue; padding-left:10px;">
+									<span style="margin-right:10px;">time stamp</span>
+									<span>date stamp</span>
+								</div>
+								
+								
+							</div>
+							<div style="background-color:purple; width:70px; text-align:center; height:80px;">
+								<span style="display:block; margin-top:30px;">trash</span>
+							</div>
+						
+						</div>
+					</li>
+					
+					
+					
+				
+					
+					
+					
+				</ul>
 			</div>
-		
 		</div>
 	
 		<div id="finishedtaskcontainer" style="width:50%; height: 500px; ">

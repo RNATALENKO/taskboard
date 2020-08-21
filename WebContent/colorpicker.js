@@ -21,6 +21,9 @@ function selectColors(){
 	
 	colorlist.addEventListener("click", function(element){
 		
+		//change textbox style (just to test)
+		textbox.style.backgroundColor = element.target.style.backgroundColor;
+		
 		//if child element (no id) then turn on border
 		if(element.target.getAttribute("id") == null){
 			
@@ -62,6 +65,8 @@ function selectColors(){
 		//return selected element color code to add to the task
 		//alert(element.target.style.backgroundColor);
 		console.log("selected color: " + element.target.style.backgroundColor);
+		
+		
 		
 	});
 }

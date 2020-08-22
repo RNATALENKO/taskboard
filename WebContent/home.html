@@ -48,13 +48,15 @@
 				</div>
 				
 				<!-- color picker  -->
-				<!-- when color picker display appears divs shift slightly left, need to fix bug, prolly need absolute positioning -->
+				<!-- when color picker display appears divs shift slightly left, need to fix bug, prolly need absolute positioning, but when absolute, color picker doesn't scale, so we need 
+				to match the width of it's parent div to the width of the div holding the list of colors -->
 				
 				<!-- also need to create wrap so colors break  -->
 				
-				<div id="buttonpickercontaienr">
+				<div id="buttonpickercontaienr" style="background-color:purple;">
 				
 						<button id="addcolorbutton" style ="margin:20px;">Add Color</button>
+		
 		
 						<div id="colorpicker" style="background-color:orange; width:inherit; height:90px; margin:auto; display:none; border-radius:10px 10px 10px 10px; position:absolute;">
 							<ul id="colorlist" style="list-style:none; display:flex; padding-left:0px; padding:20px;" >
@@ -95,6 +97,7 @@
 				
 					<!--task items layout  -->
 					<!-- need to prevent line break with long title instead hide overflow  -->
+					<!-- when minimizing window list item overlaps task container -->
 					<li>
 						<div style="display:flex;">
 							<div style="display:block;background-color:red; hieght:inherit; width:180px;"> 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<style>
+		/*dots for show title if long*/
+		.dot{
+			width:5px;
+			height:5px;
+			border-radius:50%;
+			background-color:white;
+		}
+
+
+</style>
+
+
+</head>
+
+<body style="background-color:#474644; text-align: center;">
+
+	<!-- display:inline block let's the element width equal it's contents -->
+
+	<div id="taskcontainer" style="background-color:blue; display:inline-block;text-align:left; margin-top:250px;">
+	
+		<div id="titlecontainer" style="display:flex; position:relative;">
+		
+		<!-- when dots are clicked change no wrap to wrap, to show the long title -->
+			<h1 style="color:white; margin:0px; width:313px;white-space:wrap; overflow-x:hidden; background-color:orange;">Task Name asdfasdfasdfasdfasdffasdf</h1>
+			
+			<!-- make the dots appear only if the title is longer then the width of heading container -->
+			<span id="showhidden" style="width:8%; padding-top:10px; padding-bottom:5px; background-color:green; display:flex; justify-content:space-between; height:10px; position:absolute; bottom:0%; right:0%;">
+					<span class="dot"></span>
+					<span class="dot"></span>
+					<span class="dot"></span>
+			</span>
+		</div>
+		
+	
+	
+	
+		<div id="tasktextcontainer" style ="width: 300px;background-color:coral; padding:20px;">My Task description: 
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+		 esse cillum dolore eu fugiat nulla pariatur. 
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+		mollit anim id est laborum.</div>
+		
+		<div id="timestampcontainer" style="font-style: italic;">
+			<span style="color:white;">Time stamp</span>
+			<span style="color:white;">Date stamp</span>
+		</div>
+		
+		<div id="colorcodeblock">
+			<div style="color: white;">Color code: </div>
+			<div style="width:30px; height:30px; background-color:yellow;"></div>
+			
+		</div>
+	</div>
+
+</body>
+</html>

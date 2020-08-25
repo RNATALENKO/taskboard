@@ -15,7 +15,7 @@
 
 
 </style>
-
+<script src="taskinfo.js"></script>
 
 </head>
 
@@ -28,18 +28,15 @@
 		<div id="titlecontainer" style="display:flex; position:relative;">
 		
 		<!-- when dots are clicked change no wrap to wrap, to show the long title -->
-			<h1 style="color:white; margin:0px; width:313px;white-space:wrap; overflow-x:hidden; background-color:orange;">Task Name asdfasdfasdfasdfasdffasdf</h1>
+			<h1 id="tc"  style="color:white; margin:0px; width:313px; white-space:nowrap; word-break:break-all; overflow:hidden; background-color:orange;">This is a very long title that I don't know what would happen, but seems to be, working well</h1>
 			
 			<!-- make the dots appear only if the title is longer then the width of heading container -->
-			<span id="showhidden" style="width:8%; padding-top:10px; padding-bottom:5px; background-color:green; display:flex; justify-content:space-between; height:10px; position:absolute; bottom:0%; right:0%;">
+			<span id="expandcontainer" style="width:8%; padding-top:10px; padding-bottom:5px; background-color:green; display:flex; cursor: pointer;justify-content:space-between; height:10px; position:absolute; bottom:0%; right:0%;">
 					<span class="dot"></span>
 					<span class="dot"></span>
 					<span class="dot"></span>
 			</span>
 		</div>
-		
-	
-	
 	
 		<div id="tasktextcontainer" style ="width: 300px;background-color:coral; padding:20px;">My Task description: 
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
@@ -59,6 +56,9 @@
 			
 		</div>
 	</div>
+	
+	<script> expandTitle()</script>
+	
 
 </body>
 </html>

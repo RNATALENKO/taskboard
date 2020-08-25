@@ -3,7 +3,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>TaskBoard</title>
-</head>
+
+
+
+
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+
+
 
 <script type="text/javascript" src="colorpicker.js"></script>
 
@@ -19,10 +25,29 @@
 		background-color: yellow;
 	}
 	
+	/*media query to scale down tasks*/
+	@media screen and (max-width:600px){
+		
+		ul.tasklist{
+			transform: scale(.9);
+			margin-left:30px;
+		}
+		
+		.opentaskcontainer{
+		
+			background-color:yellow;
+		}
+		
+	}
+	
 	
 
 
 </style>
+
+
+
+</head>
 
 
 
@@ -69,7 +94,13 @@
 								<li><div style="height:20px; width:20px; background-color:peachpuff;"></div></li>
 								<li><div style="height:20px; width:20px; background-color:lightgrey;"></div></li>
 							</ul>
+							
+							<!-- add a custom color-->
+							<input style="outline:none;" type="text" value="#ffffff">
+							
 						</div>
+						
+						
 						
 						<script>showPicker(); selectColors();</script>	
 						
@@ -86,47 +117,116 @@
 	<!-- open/finished tasks view -->
 	<div id="maintaskcontainer" style="background-color:lightgrey; margin:10px; display:flex;">
 	
-		<div id="opentaskcontainer" style="width:50%; height: 500px; background-color:lightgreen;">
+		<div id="opentaskcontainer" class="opentaskcontainer" style="width: 960px; background-color:lightgreen;">
+			
 			<h3 style="text-align: center; padding:20px; background-color:orange; margin-top:0px;">Open tasks</h3>
+
+
+
 			
-			<div id="tasklistcontainer" style="background-color:peachpuff;">
 			
-				<ul id="tasklist" style="list-style:none; margin:auto;display:flex; flex-wrap:wrap;">
+			
+				<ul id="tasklist" class="tasklist" style="padding:0px; list-style:none; display:flex; flex-wrap:wrap;">
 				
 				
 				
 					<!--task items layout  -->
-					<!-- need to prevent line break with long title instead hide overflow  -->
-					<!-- when minimizing window list item overlaps task container -->
-					<li>
+				
+					<li style="margin-left:45px;">
 						<div style="display:flex;">
-							<div style="display:block;background-color:red; hieght:inherit; width:180px;"> 
-							
+							<div style="display:block;background-color:red; width:180px;"> 
 								<h2 style="margin:0px;background-color: green; margin-top:25px; padding-left:5px">This is a long </h2>
-								
-								
 								<div style="background-color:blue; padding-left:10px;">
 									<span style="margin-right:10px;">time stamp</span>
 									<span>date stamp</span>
 								</div>
-								
-								
 							</div>
 							<div style="background-color:purple; width:70px; text-align:center; height:80px;">
 								<span style="display:block; margin-top:30px;">trash</span>
 							</div>
-						
+						</div>
+					</li>
+					
+					<li style="margin-left:45px;">
+						<div style="display:flex;">
+							<div style="display:block;background-color:red; width:180px;"> 
+								<h2 style="margin:0px;background-color: green; margin-top:25px; padding-left:5px">This is a long </h2>
+								<div style="background-color:blue; padding-left:10px;">
+									<span style="margin-right:10px;">time stamp</span>
+									<span>date stamp</span>
+								</div>
+							</div>
+							<div style="background-color:purple; width:70px; text-align:center; height:80px;">
+								<span style="display:block; margin-top:30px;">trash</span>
+							</div>
+						</div>
+					</li>
+					
+					<li style="margin-left:45px;">
+						<div style="display:flex;">
+							<div style="display:block;background-color:red; width:180px;"> 
+								<h2 style="margin:0px;background-color: green; margin-top:25px; padding-left:5px">This is a long </h2>
+								<div style="background-color:blue; padding-left:10px;">
+									<span style="margin-right:10px;">time stamp</span>
+									<span>date stamp</span>
+								</div>
+							</div>
+							<div style="background-color:purple; width:70px; text-align:center; height:80px;">
+								<span style="display:block; margin-top:30px;">trash</span>
+							</div>
+						</div>
+					</li>
+					
+					<li style="margin-left:45px;">
+						<div style="display:flex;">
+							<div style="display:block;background-color:red; width:180px;"> 
+								<h2 style="margin:0px;background-color: green; margin-top:25px; padding-left:5px">This is a long </h2>
+								<div style="background-color:blue; padding-left:10px;">
+									<span style="margin-right:10px;">time stamp</span>
+									<span>date stamp</span>
+								</div>
+							</div>
+							<div style="background-color:purple; width:70px; text-align:center; height:80px;">
+								<span style="display:block; margin-top:30px;">trash</span>
+							</div>
+						</div>
+					</li>
+					
+					<li style="margin-left:45px;">
+						<div style="display:flex;">
+							<div style="display:block;background-color:red; width:180px;"> 
+								<h2 style="margin:0px;background-color: green; margin-top:25px; padding-left:5px">This is a long </h2>
+								<div style="background-color:blue; padding-left:10px;">
+									<span style="margin-right:10px;">time stamp</span>
+									<span>date stamp</span>
+								</div>
+							</div>
+							<div style="background-color:purple; width:70px; text-align:center; height:80px;">
+								<span style="display:block; margin-top:30px;">trash</span>
+							</div>
+						</div>
+					</li>
+					
+					<li style="margin-left:45px;">
+						<div style="display:flex;">
+							<div style="display:block;background-color:red; width:180px;"> 
+								<h2 style="margin:0px;background-color: green; margin-top:25px; padding-left:5px">This is a long </h2>
+								<div style="background-color:blue; padding-left:10px;">
+									<span style="margin-right:10px;">time stamp</span>
+									<span>date stamp</span>
+								</div>
+							</div>
+							<div style="background-color:purple; width:70px; text-align:center; height:80px;">
+								<span style="display:block; margin-top:30px;">trash</span>
+							</div>
 						</div>
 					</li>
 					
 					
 					
-				
-					
-					
 					
 				</ul>
-			</div>
+			
 		</div>
 	
 		<div id="finishedtaskcontainer" style="width:50%; height: 500px; ">

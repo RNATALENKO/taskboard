@@ -1,0 +1,45 @@
+@charset "ISO-8859-1";
+
+.tasklist > li {
+	margin-left:45px;
+}
+
+
+.flex {
+
+	display:flex;
+}
+
+.wrapper{
+	display:block;
+	width:180px;
+	background-color:red; 
+}
+
+.tasktitle{
+	
+	margin:0px;
+	background-color: green; 
+	margin-top:25px; 
+	padding-left:5px
+}
+
+.trashwrapper{
+	
+	background-color:purple; 
+	width:70px; 
+	text-align:center; 
+	height:80px;
+}
+
+.trashicon{
+	
+	display:block; margin-top:30px;
+}
+
+.flextest{
+	width:200px;
+	height:100%;
+	background-color: orange;
+	
+}

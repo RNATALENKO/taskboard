@@ -26,6 +26,11 @@
 		background-color: yellow;
 	}
 	
+	h2{
+		overflow:hidden;
+		white-space:nowrap;
+	}
+	
 	/*media query to scale down tasks*/
 	@media screen and (max-width:600px){
 		
@@ -64,8 +69,8 @@
 		<div style="display:flex; margin:auto;">
 		
 			<div id="notecontainer" style="width:300px;">
-				<input value="task title " style="width:175px; outline: none; border:.5px solid black; display:block; margin:20px; ">
-				<textarea id="textbox" value="Stat a task..." style="width: 175px; resize:none; outline:none; margin:20px; background-color:white;" rows="10"></textarea>	
+				<input id="titleinput" value="task title " style="width:175px; outline: none; border:.5px solid black; display:block; margin:20px; ">
+				<textarea id="textbox" style="width: 175px; resize:none; outline:none; margin:20px; background-color:white;" rows="10"></textarea>	
 			</div>
 			
 			<div id="addnotecontainer">
@@ -73,7 +78,6 @@
 					<button id="addtaskbutton" style ="margin:20px;">Add task</button>
 				</div>
 				
-				<script>addTask()</script>
 				
 				<!-- color picker  -->
 				<!-- when color picker display appears divs shift slightly left, need to fix bug, prolly need absolute positioning, but when absolute, color picker doesn't scale, so we need 
@@ -123,35 +127,37 @@
 		<div id="opentaskcontainer" class="opentaskcontainer" style="width: 960px; background-color:lightgreen;">
 			
 			<h3 style="text-align: center; padding:20px; background-color:orange; margin-top:0px;">Open tasks</h3>
-
-
-
 			
 			
 			
+			
+			<!-- task list-->
 				<ul id="tasklist" class="tasklist" style="padding:0px; list-style:none; display:flex; flex-wrap:wrap;">
 				
-				
-					<!--task items layout  -->
-				
+					<!--example task item-->
 					<li>
 						<div class="flex">
+						
 							<div id ="wrapper" class="wrapper"> 
+							
 								<h2 id="tasktitle" class="tasktitle">This is a long </h2>
+								<span class="colorcode"></span>
+								<span>date</span>
 							</div>
+							
 							<div id="trashwrapper" class="trashwrapper" >
 								<span id="trashicon" class="trashicon">trash</span>
 							</div>
 						</div>
-					</li>
-					
-					
-					
+					</li>	
 					
 					
 				</ul>
-			
+				
+				
 		</div>
+		
+		<script>addATask();</script>
 	
 		<div id="finishedtaskcontainer" style="width:50%; height: 500px; ">
 		

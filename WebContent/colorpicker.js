@@ -3,6 +3,7 @@
  */
 
 
+
 //when hover over add button, show the color picker div
 function showPicker(){
 	
@@ -32,6 +33,7 @@ function selectColors(){
 				//turn on border
 				element.target.style.boxSizing = "border-box";
 				element.target.style.border ="2.5px solid black";
+				
 				
 				selectedElement = element; 
 				isSelected="selected";	
@@ -64,10 +66,15 @@ function selectColors(){
 		
 		//return selected element color code to add to the task
 		//alert(element.target.style.backgroundColor);
-		console.log("selected color: " + element.target.style.backgroundColor);
+		var currentColor = element.target.style.backgroundColor
+		console.log("selected color: " + currentColor);
 		
-		
+			
 		
 	});
 }
+
+
+export const one = 1; 
+
 

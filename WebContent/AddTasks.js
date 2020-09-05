@@ -2,15 +2,27 @@
  * 
  */
 
-function test(){
-	alert("test 1 2 3");
+
+
+//import failing
+
+var taskArray = [];
+
+
+//checks to see if list in storage, if it is then load it
+function getList(){
+	
+	if(localStorage.getItem("TaskList") != null){
+		taskArray = JSON.parse(localStorage.getItem("TaskList"));
+	}
+	
 }
 
 
-//function that creates a task element
-/*bug: when clicking add task, the tasks move downward*/
 
-function createTaskHTML(){
+
+
+function createTaskElement(title, date, colorcode) {
 	
 	//Create the elements and add the classes and appropriate text nodes
 	var li = document.createElement("LI");
@@ -24,9 +36,17 @@ function createTaskHTML(){
 	
 	var headingdiv = document.createElement("H2");
 	headingdiv.classList.add("tasktitle");
-
 	
-	var headingText = document.createTextNode("Title of task");
+	
+	var colorcodespan = document.createElement("SPAN");
+	colorcodespan.classList.add("colorcode");
+	colorcodespan.style.backgroundColor = colorcode; 
+	
+	var datespan = document.createElement("SPAN");
+	datespan.appendChild(document.createTextNode(date));
+	
+	
+	var headingText = document.createTextNode(title);
 	headingdiv.appendChild(headingText);
 	
 	
@@ -45,45 +65,59 @@ function createTaskHTML(){
 	//appending all the created elements to where they belong
 	trashdiv.appendChild(trashspan);
 	titlediv.appendChild(headingdiv);
+	titlediv.appendChild(colorcodespan);
+	titlediv.appendChild(datespan);
 	flexdiv.appendChild(titlediv);
 	flexdiv.appendChild(trashdiv);
 	li.appendChild(flexdiv);
-	tasklist.appendChild(li);
-	
-}
-
-
-class Task{
-	
-	contructor(title, taskdescription, color){
-		
-		this.title = title;
-		this.taskdescription = taskdescription; 
-		this.color = color; 
-		
-	}
-	
+	tasklist.appendChild(li);	
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//adds task element to the list of tasks
-function addTask(){
+function addATask(){
+	
 	addtaskbutton.addEventListener("click", function(){
 		
+		//date object
+		var date = new Date(); 
+		
+		//capture title, description, date and turn to object
+		var taskObject = {
+				"title": titleinput.value,
+				"description": textbox.value,
+				"timestamp": Date.now(),
+				"date": date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+		};
+		
+		//convert object to string, and display, for visual
+		alert(JSON.stringify(taskObject,"\t",2));
+		
+		//push the object into the task array
+		taskArray.push(taskObject);
+		
+		
+		//convert taskarray to string and store in local storage
+		localStorage.setItem("TaskList", JSON.stringify(taskArray));
+		
+	
+		createTaskElement(taskObject["title"], taskObject["date"]);
 		
 		
 	});
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

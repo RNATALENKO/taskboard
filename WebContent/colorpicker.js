@@ -32,7 +32,7 @@ function selectColors(){
 			
 				//turn on border
 				element.target.style.boxSizing = "border-box";
-				element.target.style.border ="2.5px solid black";
+				element.target.style.border ="2.5px solid gray";
 				
 				
 				selectedElement = element; 
@@ -43,7 +43,7 @@ function selectColors(){
 		
 				//switch the border on to the targeted elemnet
 				element.target.style.boxSizing = "border-box";
-				element.target.style.border ="2.5px solid black";
+				element.target.style.border ="2.5px solid gray";
 					
 				//turn the rest off
 				var children = colorlist.children;
@@ -69,12 +69,10 @@ function selectColors(){
 		var currentColor = element.target.style.backgroundColor
 		console.log("selected color: " + currentColor);
 		
-			
 		
 	});
 }
 
 
-export const one = 1; 
 
 

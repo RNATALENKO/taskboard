@@ -83,29 +83,58 @@
 				<!-- when color picker display appears divs shift slightly left, need to fix bug, prolly need absolute positioning, but when absolute, color picker doesn't scale, so we need 
 				to match the width of it's parent div to the width of the div holding the list of colors -->
 				
-				<!-- also need to create wrap so colors break  -->
+				<!-- also need to create wrap so colors break-->
 				
 				<div id="buttonpickercontaienr" style="background-color:purple;">
 				
 						<button id="addcolorbutton" style ="margin:20px;">Add Color</button>
 		
 		
-						<div id="colorpicker" style="background-color:orange; width:inherit; height:90px; margin:auto; display:none; border-radius:10px 10px 10px 10px; position:absolute;">
-							<ul id="colorlist" style="list-style:none; display:flex; padding-left:0px; padding:20px;" >
+						<div id="colorpicker" style="background-color:orange;  display:none; border-radius:10px 10px 10px 10px; position:absolute;">
+							<ul id="colorlist" style="list-style:none;;padding-left:0px; padding:20px; width:150px; display:flex; flex-wrap:wrap;" >
 								<li><div style="height:20px; width:20px; background-color:red;"></div></li>
 								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
 								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
 								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:coral;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:purple;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:peachpuff;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:lightgrey;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
+								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
 							</ul>
-							
+
+						<div>
+
 							<!-- add a custom color-->
-							<input style="outline:none;" type="text" value="#ffffff">
+							<div style="text-align: center; padding:5px; ">
+								<input style="outline: none; width: 50px;" type="text" value="#ffffff">
+							</div>
 							
+							<div style="text-align:center; padding:5px;">
+								<button>Add To Palette</button>
+								<button>Remove</button>
+							</div>
+							
+
 						</div>
+
+
+
+
+					</div>
 						
 						
 						
@@ -135,6 +164,7 @@
 				<ul id="tasklist" class="tasklist" style="padding:0px; list-style:none; display:flex; flex-wrap:wrap;">
 				
 					<!--example task item-->
+					<!--  
 					<li>
 						<div class="flex">
 						
@@ -150,6 +180,8 @@
 							</div>
 						</div>
 					</li>	
+					-->
+					
 					
 					
 				</ul>
@@ -157,7 +189,7 @@
 				
 		</div>
 		
-		<script>addATask();</script>
+		<script>loadList();addATask();</script>
 	
 		<div id="finishedtaskcontainer" style="width:50%; height: 500px; ">
 		

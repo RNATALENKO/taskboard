@@ -10,16 +10,26 @@ var taskArray = [];
 
 
 //checks to see if list in storage, if it is then load it
-function getList(){
+function loadList(){
 	
+	//if there is a list
 	if(localStorage.getItem("TaskList") != null){
+		
+		//get list and store in the task array
 		taskArray = JSON.parse(localStorage.getItem("TaskList"));
+		
+		
+		// create all the elements of that list, but we start from end, to populate most recent
+		for (var x = taskArray.length-1; x >= 0 ; x--){
+			
+			var currentObject = taskArray[x];
+			
+			createTaskElement(currentObject["title"], currentObject["date"]);
+		}
+			
 	}
 	
 }
-
-
-
 
 
 function createTaskElement(title, date, colorcode) {
@@ -70,7 +80,7 @@ function createTaskElement(title, date, colorcode) {
 	flexdiv.appendChild(titlediv);
 	flexdiv.appendChild(trashdiv);
 	li.appendChild(flexdiv);
-	tasklist.appendChild(li);	
+	tasklist.prepend(li); //will append node as first child to place most recent task ahead of others
 }
 
 
@@ -81,20 +91,21 @@ function addATask(){
 		
 		//date object
 		var date = new Date(); 
+		alert(date.getMonth() + "/"+  date.getDate() +  "/"+ date.getFullYear());
 		
 		//capture title, description, date and turn to object
 		var taskObject = {
 				"title": titleinput.value,
 				"description": textbox.value,
 				"timestamp": Date.now(),
-				"date": date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+				"date": date.getMonth() +1 + "/" + date.getDate() + "/" + date.getFullYear()
 		};
 		
 		//convert object to string, and display, for visual
 		alert(JSON.stringify(taskObject,"\t",2));
 		
-		//push the object into the task array
-		taskArray.push(taskObject);
+		//use unshift to add the most recent item to beginning of array
+		taskArray.unshift(taskObject);
 		
 		
 		//convert taskarray to string and store in local storage

@@ -47,6 +47,14 @@
 	}
 	
 	
+	/*color list*/
+	.item {
+		width:20px;
+		height:20px;
+	}
+	
+	
+	
 
 
 </style>
@@ -91,43 +99,33 @@
 		
 		
 						<div id="colorpicker" style="background-color:orange;  display:none; border-radius:10px 10px 10px 10px; position:absolute;">
-							<ul id="colorlist" style="list-style:none;;padding-left:0px; padding:20px; width:150px; display:flex; flex-wrap:wrap;" >
-								<li><div style="height:20px; width:20px; background-color:red;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:green;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:blue;"></div></li>
-								<li><div style="height:20px; width:20px; background-color:yellow;"></div></li>
+							<ul id="colorlist" style="list-style:none; padding-left:10px; width:150px; display:flex; flex-wrap:wrap;">
+								<li style="background-color:red;"></li>
+								<li style="background-color:green;"></li>
+								<li style="background-color:yellow;"></li>
 							</ul>
+							
+							<script>
+								var coloritems = colorlist.children;
+								for(var x = 0; x < coloritems.length; x++){
+									coloritems[x].classList.add("item");
+								}
+							</script>
 
 						<div>
-
+						
 							<!-- add a custom color-->
-							<div style="text-align: center; padding:5px; ">
-								<input style="outline: none; width: 50px;" type="text" value="#ffffff">
+
+							<div style="padding:10px;">
+								<button id="removecolorbutton">-</button>
+								<input id="colorinput" style="outline: none; width: 50px;" type="text" value="#ffffff">
+								<button id="addcolortopalettebutton">+</button>
 							</div>
-							
-							<div style="text-align:center; padding:5px;">
-								<button>Add To Palette</button>
-								<button>Remove</button>
-							</div>
-							
+
+
+
+
+
 
 						</div>
 
@@ -138,7 +136,7 @@
 						
 						
 						
-						<script>showPicker(); selectColors();</script>	
+						<script>showPicker(); selectColors(); addToColorPalette();</script>	
 						
 						
 						

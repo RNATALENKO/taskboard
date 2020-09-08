@@ -11,67 +11,136 @@ function showPicker(){
 		colorpicker.style.display = "block";
 	});
 	
+	/*
+	colorpicker.addEventListener("mouseleave", function(){
+		colorpicker.style.display = "none";
+	});
+	*/
+	
 }
 
 //when over the colors
 //bug when you click on outside element it turns on the border
 function selectColors(){
+
+	var isSelected = false; 
 	
-	var isSelected = "none";
-	var selectedElement; 
-	
+	//clicking on child li elements only
 	colorlist.addEventListener("click", function(element){
 		
-		//change textbox style (just to test)
-		textbox.style.backgroundColor = element.target.style.backgroundColor;
-		
-		//if child element (no id) then turn on border
+		//if it's a child element which has no id
 		if(element.target.getAttribute("id") == null){
 			
-			if(isSelected == "none"){
-			
-				//turn on border
+			if(isSelected == false){
+				
+				//turn border for that element on
 				element.target.style.boxSizing = "border-box";
-				element.target.style.border ="2.5px solid gray";
+				element.target.style.border = "2px solid grey";
 				
-				
-				selectedElement = element; 
-				isSelected="selected";	
-			}	
+				isSelected = true; 
+			}
 			
-			else if(isSelected =="selected"){
-		
-				//switch the border on to the targeted elemnet
-				element.target.style.boxSizing = "border-box";
-				element.target.style.border ="2.5px solid gray";
-					
-				//turn the rest off
-				var children = colorlist.children;
+			if (isSelected == true){
 				
-				for(var x = 0; x < children.length; x++){
-					
-						if(children[x].firstElementChild.style.backgroundColor != element.target.style.backgroundColor){
-							children[x].firstElementChild.style.border = "none";
-						}	
+				//if the color item has a border turn it off
+				var coloritems = colorlist.children;
+				for(var x = 0; x < coloritems.length; x++){
+					if(coloritems[x].style.border == "2px solid grey"){
+						coloritems[x].style.border = "none";
+					}
 				}
-	
-			}	
-		}	
+				
+				//turn border for next clicked element
+				element.target.style.boxSizing = "border-box";
+				element.target.style.border = "2px solid grey";
+				
+			}
+		}
 		
+		//set textbox as same background color as palette item you clicked on
+		textbox.style.backgroundColor = element.target.style.backgroundColor; 
 		
-		//add the hover out listener
-		colorpicker.addEventListener("mouseleave", function(){
-			colorpicker.style.display = "none";
-		});
-		
-		//return selected element color code to add to the task
-		//alert(element.target.style.backgroundColor);
-		var currentColor = element.target.style.backgroundColor
-		console.log("selected color: " + currentColor);
-		
-		
+				
 	});
 }
+
+
+
+//functions to add and remove colors from color palette
+//note on refresh colors disappear because they aren't saved. 
+
+function addToColorPalette(){
+	
+	
+	
+	//add a color to palette
+	function addColor(){
+		
+		//creates a color item to append to list
+		function createColorItem(color){
+			
+			var listItem = document.createElement("LI");
+			listItem.classList.add("item");
+			listItem.style.backgroundColor = color; 
+			colorlist.appendChild(listItem);
+			
+		}
+		
+		//tests to see if value is a valid color hex
+		function isValideHex(value){
+			 var pattern = /^#[0-9A-F]{6}$/;
+			 var results = pattern.test(value);
+			 return results; 
+		}
+		
+		addcolortopalettebutton.addEventListener("click", function(){
+			
+			//if color input is valid, create the color item
+			if(colorinput.value.length == 7 && isValidHex(colorinput.value) == true)
+				createColorItem(colorinput.value);
+			});
+	}
+	
+	//execute
+	addColor();
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,13 +4,16 @@
 
 
 
-//import failing
+
+
 
 var taskArray = [];
 
 
 //checks to see if list in storage, if it is then load it
 function loadList(){
+	
+	
 	
 	//if there is a list
 	if(localStorage.getItem("TaskList") != null){
@@ -28,8 +31,15 @@ function loadList(){
 		}
 			
 	}
-	
 }
+
+
+
+
+
+
+
+
 
 
 function createTaskElement(title, date, colorcode) {
@@ -50,7 +60,10 @@ function createTaskElement(title, date, colorcode) {
 	
 	var colorcodespan = document.createElement("SPAN");
 	colorcodespan.classList.add("colorcode");
-	colorcodespan.style.backgroundColor = colorcode; 
+	var color = JSON.parse(localStorage.getItem("SelectedColor"));
+	colorcodespan.style.backgroundColor = color; 
+	
+	
 	
 	var datespan = document.createElement("SPAN");
 	datespan.appendChild(document.createTextNode(date));
@@ -112,12 +125,14 @@ function addATask(){
 		localStorage.setItem("TaskList", JSON.stringify(taskArray));
 		
 	
-		createTaskElement(taskObject["title"], taskObject["date"]);
+		createTaskElement(taskObject["title"], taskObject["date"], localStorage.getItem("SelectedColor"));
 		
 		
 	});
 	
 }
+
+
 
 
 

@@ -10,10 +10,10 @@
 var taskArray = [];
 
 
+
+
 //checks to see if list in storage, if it is then load it
 function loadList(){
-	
-	
 	
 	//if there is a list
 	if(localStorage.getItem("TaskList") != null){
@@ -37,11 +37,6 @@ function loadList(){
 
 
 
-
-
-
-
-
 function createTaskElement(title, date, colorcode) {
 	
 	//Create the elements and add the classes and appropriate text nodes
@@ -60,8 +55,7 @@ function createTaskElement(title, date, colorcode) {
 	
 	var colorcodespan = document.createElement("SPAN");
 	colorcodespan.classList.add("colorcode");
-	var color = JSON.parse(localStorage.getItem("SelectedColor"));
-	colorcodespan.style.backgroundColor = color; 
+	colorcodespan.style.backgroundColor = colorcode; 
 	
 	
 	
@@ -111,7 +105,8 @@ function addATask(){
 				"title": titleinput.value,
 				"description": textbox.value,
 				"timestamp": Date.now(),
-				"date": date.getMonth() +1 + "/" + date.getDate() + "/" + date.getFullYear()
+				"date": date.getMonth() +1 + "/" + date.getDate() + "/" + date.getFullYear(),
+				"colorcode": JSON.parse(localStorage.getItem("SelectedColor"))
 		};
 		
 		//convert object to string, and display, for visual
@@ -125,7 +120,7 @@ function addATask(){
 		localStorage.setItem("TaskList", JSON.stringify(taskArray));
 		
 	
-		createTaskElement(taskObject["title"], taskObject["date"], localStorage.getItem("SelectedColor"));
+		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")));
 		
 		
 	});

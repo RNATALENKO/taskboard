@@ -2,6 +2,9 @@
  * 
  */
 
+/*
+ * Bug, when click outside, on right hand side, colors turn to white, deseelct doesn't work, and last highlighted color still in memory
+ */
 
 
 
@@ -33,13 +36,38 @@ function showPicker(){
 		colorpicker.style.display = "block";
 	});
 	
-	/*
+	
 	colorpicker.addEventListener("mouseleave", function(){
 		colorpicker.style.display = "none";
 	});
-	*/
 	
 }
+
+
+//deslects color on click outside color palette
+function deselect(){
+	
+	colorpicker.addEventListener("click", function(event){
+		
+		var isClickInside = colorlist.contains(event.target);
+		
+		if(!isClickInside){
+			
+			var children = colorlist.children;
+			for (var x = 0; x < children.length; x++){
+				children[x].style.border = "none";
+			}	
+			
+			//set list item to null
+			localStorage.setItem("SelectedColor", JSON.stringify(null));
+			textbox.style.backgroundColor = "#ffffff"; //default text box color;
+		}
+		
+	});
+	
+}
+
+
 
 //when over the colors
 //bug when you click on outside element it turns on the border
@@ -167,8 +195,6 @@ function removeColorFromPalette(){
 			
 			colorArray.forEach(function(element){
 				
-				
-				
 				/* NEED HEX/RGB CONVERSION
 				if(colorinput.value == element.style.backgroundColor){
 					colorlist.removeChild(element);
@@ -179,7 +205,6 @@ function removeColorFromPalette(){
 			
 		}
 		
-	
 		
 	});
 	

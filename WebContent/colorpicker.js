@@ -3,27 +3,68 @@
  */
 
 /*
- * Bug, when click outside, on right hand side, colors turn to white, deseelct doesn't work, and last highlighted color still in memory
+ * Bug: when click on remove button, highlight disappears
  */
 
 
 
-//function that converts an rgb value to a hex code
-function valueToHex(value){
+
+
+
+
+
+
+//inputs hex color code, outputs rgb array of values
+function hexToRgb(hex){
 	
-	var hex = Number(value).stoString(16);
-	if(hex.length <2){
-		hex = "0" + hex; 
-	}
-	return hex; 
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	
+	//if something returns to result, parse the results/create object, or return null
+	return result ? {
+	    r: parseInt(result[1], 16),
+	    g: parseInt(result[2], 16),
+	    b: parseInt(result[3], 16)
+	  } : null;
 	
 }
 
-//function that returns a full hex value
-function fullHex(r,g,b){
+
+//extracts rgb values from a given element
+function extractValues(element){
 	
-	return valueToHex(r) + valueToHex(g) + valueToHex(b);
+
+	
+	//store values after regex, add comma
+	var extraction = element.style.backgroundColor.match(/\d+/g).toString() + ",";
+	
+	//generate and return an array of rgb values [255, 255, 2555,]
+	var rgbArray = [];
+	var value = "";
+	arrayIndexCount = 0;
+	
+		for(var y = 0; y < extraction.length; y++){
+			
+			if(extraction[y] != ','){
+				value += extraction[y];
+			}
+			else {
+				rgbArray[arrayIndexCount] = value; 
+				value = "";
+				arrayIndexCount++;
+			}
+		}
+	
+	rgbArray += ",";
+	
+	return rgbArray;
+	
 }
+
+
+
+
+
+
 
 
 
@@ -51,7 +92,8 @@ function deselect(){
 		
 		var isClickInside = colorlist.contains(event.target);
 		
-		if(!isClickInside){
+		
+		if(!isClickInside && event.target != removecolorbutton && event.target != colorinput && event.target != addcolortopalettebutton){
 			
 			var children = colorlist.children;
 			for (var x = 0; x < children.length; x++){
@@ -74,10 +116,11 @@ function deselect(){
 /*
  * need a way when clicked outside of color palette then then turn off selected
  */
+
+var isSelected = false; 
+
 function selectColors(){
 
-	var isSelected = false; 
-	
 	//clicking on child li elements only
 	colorlist.addEventListener("click", function(element){
 		
@@ -146,10 +189,38 @@ function addToColorPalette(){
 			 return results; 
 		}
 		
+		
+		
+		
+		//function that checks if a color exists, if it does, do not create color item
+		function colorExists(hex){
+			
+			var rgbValues = Object.values(hexToRgb(hex)) + ",";
+			
+			//get children
+			var children = colorlist.children;
+			
+			for(var x = 0; x < children.length; x++){
+				
+				if(extractValues(children[x]) == rgbValues){
+					return true; 
+				}
+				
+				
+			}
+			
+			return false;
+			
+		}
+		
+		
+		
+		
+		
 		addcolortopalettebutton.addEventListener("click", function(){
 			
 			//if color input has length of 7 chars and is a valid hex pattern, create color item in pallette
-			if(colorinput.value.length == 7 && isValidHex(colorinput.value)){
+			if(colorinput.value.length == 7 && isValidHex(colorinput.value) && !colorExists(colorinput.value) ){
 				
 				createColorItem(colorinput.value);
 			}
@@ -162,48 +233,58 @@ function addToColorPalette(){
 
 
 
-
+//testing color #1174bf
 //function that will remove colors
 function removeColorFromPalette(){
 	
 	
 	removecolorbutton.addEventListener("click", function(){
 		
-		//store selected item
-		selectedItem = null;
 		
-		var colorItems = colorlist.children;
-		var colorArray = Array.from(colorItems);
-		
-		//store selected item
-		for(var x = 0; x < colorArray.length; x++){
-			if(colorArray[x].style.border == "2px solid grey"){
-				selectedItem = colorArray[x];
-			}
-		}
-		
-
-		//if there is a highligted element remove it
-		if(selectedItem != null){
+		//if there's a selected color
+		if(isSelected == true){
 			
-			colorlist.removeChild(selectedItem);
-				
+			//get the children
+			var children = colorlist.children; 
+			
+			//remove highlighted child
+			for (var x = 0; x < children.length; x++){
+				if(children[x].style.border == "2px solid grey"){
+					colorlist.removeChild(children[x]);
+				}
+			}			
+			
 		}
+		
+		//if no selected color
 		else{
 			
-			//otherwise remove colors of whatever colorinput.value is
+			//get rgb values from hex inside input 
+			var inputRgb = Object.values(hexToRgb(colorinput.value)) + ","; 
 			
-			colorArray.forEach(function(element){
+			
+			//get all colors in palette and convert to array of elements
+			var allColors = colorlist.children;
+			
+	
+			//loop through all colors if there's a matching rgb value remove it from colorlist
+			for(var x = 0; allColors.length; x++){
 				
-				/* NEED HEX/RGB CONVERSION
-				if(colorinput.value == element.style.backgroundColor){
-					colorlist.removeChild(element);
+				var colorListRgb = extractValues(allColors[x]);
+				
+				if(colorListRgb == inputRgb){
+					colorlist.removeChild(allColors[x]);
 				}
-				*/
 				
-			});
+			}
 			
+			
+		
+				
 		}
+		
+		
+		
 		
 		
 	});

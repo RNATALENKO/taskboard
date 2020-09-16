@@ -21,7 +21,6 @@ function loadList(){
 		//get list and store in the task array
 		taskArray = JSON.parse(localStorage.getItem("TaskList"));
 		
-		
 		// create all the elements of that list, but we start from end, to populate most recent
 		for (var x = taskArray.length-1; x >= 0 ; x--){
 			

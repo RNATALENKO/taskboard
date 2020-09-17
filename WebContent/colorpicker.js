@@ -6,9 +6,14 @@
  * Bug: when click on remove button, highlight disappears
  */
 
+/*
+ * Once you click on a color: clear the input
+ */
 
 
-
+/*
+ * also need a way to go back and change the color
+ */
 
 
 
@@ -63,6 +68,38 @@ function extractValues(element){
 
 
 
+
+
+
+
+
+
+var colorpalette = [];
+
+
+
+
+//loads palette from local storage, if any
+function loadPalette(){
+	
+	
+	if(localStorage.getItem("ColorPalette")!=null){
+		
+		//store the list into the palette array
+		colorpalette = JSON.parse(localStorage.getItem("ColorPalette"));
+		
+		//create palette li and load all of the color pallete items into the ul
+		alert("List exists");
+		
+		for(var x = 0; x < colorpalette.length; x++){
+			
+			createColorItem(colorpalette[x]);
+		}
+		
+		
+	}
+	
+}
 
 
 
@@ -134,6 +171,8 @@ function selectColors(){
 				element.target.style.border = "2px solid grey";
 				
 				isSelected = true; 
+				
+				
 			}
 			
 			if (isSelected == true){
@@ -153,6 +192,8 @@ function selectColors(){
 				//store selected color local
 				localStorage.setItem("SelectedColor", JSON.stringify(element.target.style.backgroundColor));
 				
+				
+				
 			}
 		}
 		
@@ -160,6 +201,24 @@ function selectColors(){
 		textbox.style.backgroundColor = element.target.style.backgroundColor; 	
 	});
 }
+
+
+
+
+//creates a color item to append to list
+function createColorItem(color){
+	
+	var listItem = document.createElement("LI");
+	listItem.classList.add("item");
+	listItem.style.backgroundColor = color; 
+	colorlist.appendChild(listItem);
+	
+}
+
+
+
+
+
 
 
 
@@ -171,16 +230,6 @@ function addToColorPalette(){
 	
 	//add a color to palette
 	function addColor(){
-		
-		//creates a color item to append to list
-		function createColorItem(color){
-			
-			var listItem = document.createElement("LI");
-			listItem.classList.add("item");
-			listItem.style.backgroundColor = color; 
-			colorlist.appendChild(listItem);
-			
-		}
 		
 		//tests to see if value is a valid color hex
 		function isValidHex(value){
@@ -215,14 +264,19 @@ function addToColorPalette(){
 		
 		
 		
-		
-		
+		//on click add to color, and add to array
 		addcolortopalettebutton.addEventListener("click", function(){
 			
 			//if color input has length of 7 chars and is a valid hex pattern, create color item in pallette
 			if(colorinput.value.length == 7 && isValidHex(colorinput.value) && !colorExists(colorinput.value) ){
 				
+				
 				createColorItem(colorinput.value);
+				colorpalette.push(colorinput.value);
+				localStorage.setItem("ColorPalette", JSON.stringify(colorpalette));
+				
+				
+				
 			}
 		});
 	}
@@ -277,15 +331,8 @@ function removeColorFromPalette(){
 				}
 				
 			}
-			
-			
-		
 				
 		}
-		
-		
-		
-		
 		
 	});
 	

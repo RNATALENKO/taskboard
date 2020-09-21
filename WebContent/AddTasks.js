@@ -1,5 +1,7 @@
 /**
  * 
+ * 
+ * current bug fix: Need to load color palette into the html li elements, upon refresh, they disappear
  */
 
 
@@ -31,8 +33,6 @@ function loadList(){
 			
 	}
 }
-
-
 
 
 
@@ -93,6 +93,17 @@ function createTaskElement(title, date, colorcode) {
 
 function addATask(){
 	
+	var taskId = 0; 
+	
+	if(localStorage.getItem("CurrentTaskID")!= null){
+		taskId = parseInt(localStorage.getItem("CurrentTaskID"));
+	}
+	else{
+		taskId = 0; 
+	}
+
+	
+	
 	addtaskbutton.addEventListener("click", function(){
 		
 		//date object
@@ -103,7 +114,7 @@ function addATask(){
 		var taskObject = {
 				"title": titleinput.value,
 				"description": textbox.value,
-				"timestamp": Date.now(),
+				"taskId": taskId,
 				"date": date.getMonth() +1 + "/" + date.getDate() + "/" + date.getFullYear(),
 				"colorcode": JSON.parse(localStorage.getItem("SelectedColor"))
 		};
@@ -121,13 +132,56 @@ function addATask(){
 	
 		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")));
 		
+		taskId +=1; 
+		
+		//store task id into
+		localStorage.setItem("CurrentTaskID", JSON.stringify(taskId));
+		
 		
 	});
 	
 }
 
 
+//loads the color palettes associated with object into the created div element
+function loadInPalettes(){
+	
+	//if task list exists
+	if(localStorage.getItem("TaskList")!= null){
+		
+		//retrieve task list
+		taskArray = JSON.parse(localStorage.getItem("TaskList"));
+	
+	
+		for(var x = 0; x < taskArray.length; x++){
+			currentObject = taskArray[x];
+			var currentPalette = currentObject["colorcode"];
+			alert(currentPalette);
+			
+			//get all list elements and update their colors 
+			var listItems = tasklist.children;
+			
+			var currentListItem = listItems[x];
+			
+			
+			
+		}
+			
+	
+	}
+	
+	
+}
 
+	
+
+
+
+//remove tasks
+function removeTask(){
+	
+	
+}
 
 
 

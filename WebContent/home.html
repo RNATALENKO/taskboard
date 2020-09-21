@@ -53,6 +53,10 @@
 		height:20px;
 	}
 	
+	li{
+	cursor:pointer;
+	}
+	
 	
 	
 
@@ -124,15 +128,9 @@
 						
 						
 						
-						
-						
-						
-						<script>showPicker(); 
-						selectColors();
-						addToColorPalette(); 
-						removeColorFromPalette(); 
-						deselect();
-						loadPalette();
+						<script>
+						//run the color palette
+						showPicker(); selectColors();addToColorPalette(); removeColorFromPalette(); deselect();loadPalette();
 						</script>	
 						
 						
@@ -184,7 +182,7 @@
 				
 		</div>
 		
-		<script>loadList();addATask();</script>
+		<script>loadList();addATask(); loadInPalettes(); removeTask();</script>
 	
 		<div id="finishedtaskcontainer" style="width:50%; height: 500px; ">
 		

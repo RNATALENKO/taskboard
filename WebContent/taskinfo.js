@@ -21,5 +21,8 @@ expandcontainer.addEventListener("click",function(){
 			tc.style.whiteSpace = "nowrap";
 		}
 	});
+
+ 	
+   
 	
 }

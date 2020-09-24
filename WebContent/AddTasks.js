@@ -13,7 +13,6 @@ var taskArray = [];
 
 
 
-
 //checks to see if list in storage, if it is then load it
 function loadList(){
 	
@@ -33,6 +32,7 @@ function loadList(){
 			
 	}
 }
+
 
 
 
@@ -162,8 +162,6 @@ function loadInPalettes(){
 			var listItems = tasklist.children;
 			
 			var currentListItem = listItems[x];
-			
-			
 			
 		}
 			

@@ -327,6 +327,8 @@ function removeColorFromPalette(){
 			var selectedChild = null;
 			
 			
+			
+			
 			//remove highlighted child
 			for (var x = 0; x < children.length; x++){
 				if(children[x].style.border == "2px solid grey"){
@@ -335,40 +337,26 @@ function removeColorFromPalette(){
 				}
 			}	
 			
-
-		/*
-			//remove from storage
 			
-			var currentPalette = JSON.parse(localStorage.getItem("ColorPalette"));
-			var updatedPalette = null;
 			
-			//loop through palette array
-			for(var x = 0; x < currentPalette.length; x++ ){
-				
-				var currenthex = currentPalette[x];
-	
-				
-				var currentObject = Object.values(hexToRgb(currenthex)) + ",";
-				
-				
-				var extractedValue = extractValues(selectedChild);
-		
-				
-				//when the colors of the selected match what's in color palette
-				if(currentObject == extractedValue){
+			/* remove from local storage*/
+			var colorPalettes = JSON.parse(localStorage.getItem("ColorPalette")); //get string array convert to object
+			
+			var selectedRgb = extractValues(selectedChild); //array of rgb values of selected child
 					
-					updatedPalette = currentPalette.splice(x,1);
-					alert(JSON.stringify(updatedPalette));
+			//remove the stored rgb value from color palettes array, store again
+				
+			colorPalettes = colorPalettes.filter(function(color){
 					
+				var storedRgbValue = Object.values(hexToRgb(color)) + ","; 
+				
+				if(storedRgbValue != selectedRgb){
+					return color; 
 				}
 				
-				
-			}
-			
-		*/
-			
-			
-			
+			});
+					//store updated color palettes after removal.
+					localStorage.setItem("ColorPalette", JSON.stringify(colorPalettes));
 			
 		}
 		

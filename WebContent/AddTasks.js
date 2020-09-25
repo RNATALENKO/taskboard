@@ -175,11 +175,6 @@ function loadInPalettes(){
 
 
 
-//remove tasks
-function removeTask(){
-	
-	
-}
 
 
 

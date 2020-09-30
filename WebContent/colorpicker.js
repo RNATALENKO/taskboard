@@ -1,20 +1,15 @@
-/**
- * 
- */
-
-/*
- * Bug: when click on remove button, highlight disappears
- */
 
 /*
  * Once you click on a color: clear the input
  */
 
 
-/*
- * also need a way to go back and change the color
- */
 
+/*
+ * Need to load the palettes from object list to each front end list item
+ * 
+ * 
+ */
 
 
 

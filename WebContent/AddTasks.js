@@ -156,7 +156,7 @@ function loadInPalettes(){
 		for(var x = 0; x < taskArray.length; x++){
 			currentObject = taskArray[x];
 			var currentPalette = currentObject["colorcode"];
-			alert(currentPalette);
+			//alert(currentPalette);
 			
 			//get all list elements and update their colors 
 			var listItems = tasklist.children;

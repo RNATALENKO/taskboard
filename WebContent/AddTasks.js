@@ -151,17 +151,45 @@ function loadInPalettes(){
 		
 		//retrieve task list
 		taskArray = JSON.parse(localStorage.getItem("TaskList"));
+		
+		//get all span elements with class name color code
+		var spanElements = document.getElementsByClassName("colorcode");
+		
+		
+		//see if span elements not null
+		alert(spanElements);
 	
 	
+		//loop through taskArray
 		for(var x = 0; x < taskArray.length; x++){
+			
 			currentObject = taskArray[x];
+			
+			//retrieve objects colorcode
 			var currentPalette = currentObject["colorcode"];
-			//alert(currentPalette);
+			
+			
+			
+			//display current rgb color code
+			
+			
+			
 			
 			//get all list elements and update their colors 
 			var listItems = tasklist.children;
 			
+			
+			
+			
+			//get current list item
 			var currentListItem = listItems[x];
+			
+		
+			
+			
+			//need to inject the colorcodes from task array into the list item color code element
+			
+			
 			
 		}
 			

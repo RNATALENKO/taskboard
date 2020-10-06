@@ -12,8 +12,8 @@
 
 
 <script type="text/javascript" src="colorpicker.js"></script>
-<script type="text/javascript" src="AddTasks.js"></script>
-<script type="text/javascript" src="DeleteTasks.js"></script>
+<script type="text/javascript" src="TaskManipulator.js"></script>
+
 
 <style>
 
@@ -183,7 +183,10 @@
 				
 		</div>
 		
-		<script>loadList(); addATask(); loadInPalettes(); removeTask();</script>
+		<script>getTaskNumber();</script>
+		<script>loadList(); addATask(); loadInPalettes(); removeTask(); </script>
+		<script>deleteTask();</script>
+		
 	
 		<div id="finishedtaskcontainer" style="width:50%; height: 500px; ">
 		

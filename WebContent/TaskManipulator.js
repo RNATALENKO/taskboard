@@ -1,17 +1,11 @@
 /**
  * 
+ *  Add tasks operations
  * 
- * current bug fix: Need to load color palette into the html li elements, upon refresh, they disappear
  */
 
 
-
-
-
-
 var taskArray = [];
-
-
 
 //checks to see if list in storage, if it is then load it
 function loadList(){
@@ -34,12 +28,26 @@ function loadList(){
 }
 
 
+var taskNumber = 0; 
 
 
-function createTaskElement(title, date, colorcode) {
+function getTaskNumber(){
+	
+	//get task number if in storage
+	if(localStorage.getItem("TaskNumber")!= null){
+		taskNumber = parseInt(localStorage.getItem("TaskNumber"));
+	}
+
+}
+
+
+
+
+function createTaskElement(title, date, colorcode, taskNumber) {
 	
 	//Create the elements and add the classes and appropriate text nodes
 	var li = document.createElement("LI");
+	li.setAttribute("id", taskNumber);
 	
 	var flexdiv = document.createElement("DIV");
 	flexdiv.classList.add("flex");
@@ -90,7 +98,6 @@ function createTaskElement(title, date, colorcode) {
 }
 
 
-
 function addATask(){
 	
 	var taskId = 0; 
@@ -125,17 +132,30 @@ function addATask(){
 		//use unshift to add the most recent item to beginning of array
 		taskArray.unshift(taskObject);
 		
-		
 		//convert taskarray to string and store in local storage
 		localStorage.setItem("TaskList", JSON.stringify(taskArray));
 		
-	
-		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")));
 		
+		
+		//create the task element passing in arguments
+		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskNumber);
+		
+		//add to the taskId
 		taskId +=1; 
 		
-		//store task id into
+		//store task id into local storage
 		localStorage.setItem("CurrentTaskID", JSON.stringify(taskId));
+		
+		alert("Task number is:" + taskNumber);
+		
+		
+		//add to task number, since a task was stored
+		taskNumber+=1;
+		
+		//store taskNumber value
+		localStorage.setItem("TaskNumber", JSON.stringify(taskNumber));
+		
+	
 		
 		
 	});
@@ -155,9 +175,6 @@ function loadInPalettes(){
 		//get all span elements with class name color code
 		var spanElements = document.getElementsByClassName("colorcode");
 		
-		
-		//see if span elements not null
-		alert(spanElements);
 	
 	
 		//loop through taskArray
@@ -204,6 +221,43 @@ function loadInPalettes(){
 
 
 
+
+/*
+ * 
+ *   Delete Tasks Operations
+ * 
+ */
+
+
+
+function deleteTask(){
+	
+	
+		//if task list exists, store in array
+		if(localStorage.getItem("TaskList") != null){
+			taskArray = JSON.parse(localStorage.getItem("TaskList"));
+		}
+		
+	
+		//return the nth value of when the element was clicked
+		tasklist.addEventListener("click", function(){
+			
+			
+			var listItems = tasklist.children;
+			
+			for(var x = 0; x < listItems.length; x++){
+				
+				alert(listItems[x].getAttribute("id"));
+				
+			};
+			
+			
+		});
+
+	
+	
+	
+}
 
 
 

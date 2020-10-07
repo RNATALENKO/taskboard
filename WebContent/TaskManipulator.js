@@ -28,36 +28,27 @@ function loadList(){
 }
 
 
-var taskNumber = 0; 
-
-
-function getTaskNumber(){
-	
-	//get task number if in storage
-	if(localStorage.getItem("TaskNumber")!= null){
-		taskNumber = parseInt(localStorage.getItem("TaskNumber"));
-	}
-
-}
 
 
 
-
-function createTaskElement(title, date, colorcode, taskNumber) {
+function createTaskElement(title, date, colorcode) {
 	
 	//Create the elements and add the classes and appropriate text nodes
 	var li = document.createElement("LI");
-	li.setAttribute("id", taskNumber);
+	li.setAttribute("id", "li");
 	
 	var flexdiv = document.createElement("DIV");
 	flexdiv.classList.add("flex");
+	flexdiv.setAttribute("id", "flex");
 	
 	var titlediv = document.createElement("DIV");
 	titlediv.classList.add("wrapper");
+	titlediv.setAttribute("id", "wrapper");
 	
 	
 	var headingdiv = document.createElement("H2");
 	headingdiv.classList.add("tasktitle");
+	headingdiv.setAttribute("id", "tasktitle");
 	
 	
 	var colorcodespan = document.createElement("SPAN");
@@ -68,6 +59,8 @@ function createTaskElement(title, date, colorcode, taskNumber) {
 	
 	var datespan = document.createElement("SPAN");
 	datespan.appendChild(document.createTextNode(date));
+	datespan.classList.add("datespan");
+	datespan.setAttribute("id", "date");
 	
 	
 	var headingText = document.createTextNode(title);
@@ -76,6 +69,7 @@ function createTaskElement(title, date, colorcode, taskNumber) {
 	
 	var trashdiv = document.createElement("DIV");
 	trashdiv.classList.add("trashwrapper");
+	trashdiv.setAttribute("id", "trashwrapper");
 	
 	
 	var trashspan = document.createElement("SPAN");
@@ -138,24 +132,13 @@ function addATask(){
 		
 		
 		//create the task element passing in arguments
-		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskNumber);
+		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")));
 		
 		//add to the taskId
 		taskId +=1; 
 		
 		//store task id into local storage
 		localStorage.setItem("CurrentTaskID", JSON.stringify(taskId));
-		
-		alert("Task number is:" + taskNumber);
-		
-		
-		//add to task number, since a task was stored
-		taskNumber+=1;
-		
-		//store taskNumber value
-		localStorage.setItem("TaskNumber", JSON.stringify(taskNumber));
-		
-	
 		
 		
 	});
@@ -196,6 +179,7 @@ function loadInPalettes(){
 			var listItems = tasklist.children;
 			
 			
+
 			
 			
 			//get current list item
@@ -233,29 +217,81 @@ function loadInPalettes(){
 function deleteTask(){
 	
 	
-		//if task list exists, store in array
-		if(localStorage.getItem("TaskList") != null){
-			taskArray = JSON.parse(localStorage.getItem("TaskList"));
-		}
+		tasklist.addEventListener("click", function(element){
+			
+			
+			
+			
+			if(element.target.getAttribute("id") == "trashwrapper" && localStorage.getItem("TaskList") != null){
+				
+				//current element
+				var currentElement = element.target; 
+				
+				
+				//get the flex outer element
+				var currentFlexDiv = currentElement.parentElement; 
+				
+				//get the title div
+				var titlediv = currentFlexDiv.firstElementChild;
 		
-	
-		//return the nth value of when the element was clicked
-		tasklist.addEventListener("click", function(){
-			
-			
-			var listItems = tasklist.children;
-			
-			for(var x = 0; x < listItems.length; x++){
 				
-				alert(listItems[x].getAttribute("id"));
-				
-			};
-			
-			
-		});
+				//get the title element
+				titlecontent = titlediv.firstElementChild.innerHTML; 
 
-	
-	
+				//remove the li item from from view
+				tasklist.removeChild(currentElement.parentElement.parentElement);
+				
+				
+				//get the stored list into an array
+				var taskArray = JSON.parse(localStorage.getItem("TaskList"));
+				
+			
+				//loop through array and delete a value
+				var storedTitle = "";
+				var currentObject = null; 
+				var updatedTaskArray = [];
+				
+				for( var x = 0; x < taskArray.length; x++){
+					
+					//store current object in array
+					currentObject = taskArray[x];
+					
+					//get current objects title
+					storedTitle = currentObject["title"];
+					
+					//if clicked title matches stored title
+					if(titlecontent == storedTitle){
+						
+						
+						//remove the entire object from the task array
+						taskArray.splice(x, 1);
+						
+						
+					}
+					
+					
+				}
+			
+			
+				//show updated task array
+				alert(updatedTaskArray.toString());
+				
+
+				//store the task array back to local storage
+				localStorage.setItem("TaskList", JSON.stringify(taskArray));
+				
+				
+				
+				
+				//subtract one from current task id and store back into local storage
+				
+				
+				
+				
+				
+			}
+				
+		});
 	
 }
 

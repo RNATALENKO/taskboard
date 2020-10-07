@@ -21,7 +21,8 @@
 	margin:0px;
 	background-color: green; 
 	margin-top:25px; 
-	padding-left:5px
+	padding-left:5px;
+	pointer-events: none;
 }
 
 
@@ -30,6 +31,7 @@
 	display:inline-block;
 	width:20px;
 	height:20px;
+	pointer-events: none;
 }
 
 
@@ -44,6 +46,7 @@
 .trashicon{
 	
 	display:block; margin-top:30px;
+	pointer-events:none;
 }
 
 .flextest{
@@ -51,4 +54,8 @@
 	height:100%;
 	background-color: orange;
 	
+}
+
+.datespan{
+	pointer-events:none;
 }

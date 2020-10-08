@@ -57,6 +57,7 @@ function createTaskElement(title, date, colorcode) {
 	
 	
 	
+	
 	var datespan = document.createElement("SPAN");
 	datespan.appendChild(document.createTextNode(date));
 	datespan.classList.add("datespan");
@@ -149,55 +150,34 @@ function addATask(){
 //loads the color palettes associated with object into the created div element
 function loadInPalettes(){
 	
-	//if task list exists
+	var colorCodeItems = null;
+	
+	//if list exists in storage:
 	if(localStorage.getItem("TaskList")!= null){
 		
-		//retrieve task list
+		//retrieve task list in storage
 		taskArray = JSON.parse(localStorage.getItem("TaskList"));
 		
-		//get all span elements with class name color code
-		var spanElements = document.getElementsByClassName("colorcode");
+		//get html list items, from class name colorcode
+		colorCodeItems = document.getElementsByClassName("colorcode");
 		
-	
-	
-		//loop through taskArray
-		for(var x = 0; x < taskArray.length; x++){
+		//loop through task array of objects
+		for( var x = 0; x < taskArray.length; x++){
 			
-			currentObject = taskArray[x];
+			//store current object
+			var currentObject = taskArray[x];
 			
-			//retrieve objects colorcode
-			var currentPalette = currentObject["colorcode"];
+			//store current color code
+			var currentObjectColor = currentObject["colorcode"];
 			
+			//store current html element
+			var currentHtml = colorCodeItems[x];
 			
-			
-			//display current rgb color code
-			
-			
-			
-			
-			//get all list elements and update their colors 
-			var listItems = tasklist.children;
-			
-			
-
-			
-			
-			//get current list item
-			var currentListItem = listItems[x];
-			
-		
-			
-			
-			//need to inject the colorcodes from task array into the list item color code element
-			
-			
+			//set current html elements background color to currentObjectColor
+			currentHtml.style.backgroundColor = currentObjectColor; 
 			
 		}
-			
-	
 	}
-	
-	
 }
 
 	
@@ -221,10 +201,10 @@ function deleteTask(){
 			
 			
 			
-			
+			//if the trashwrapper is clicked and a list already exists:
 			if(element.target.getAttribute("id") == "trashwrapper" && localStorage.getItem("TaskList") != null){
 				
-				//current element
+				//get clicked element
 				var currentElement = element.target; 
 				
 				
@@ -249,7 +229,6 @@ function deleteTask(){
 				//loop through array and delete a value
 				var storedTitle = "";
 				var currentObject = null; 
-				var updatedTaskArray = [];
 				
 				for( var x = 0; x < taskArray.length; x++){
 					
@@ -271,21 +250,10 @@ function deleteTask(){
 					
 					
 				}
-			
-			
-				//show updated task array
-				alert(updatedTaskArray.toString());
 				
 
 				//store the task array back to local storage
 				localStorage.setItem("TaskList", JSON.stringify(taskArray));
-				
-				
-				
-				
-				//subtract one from current task id and store back into local storage
-				
-				
 				
 				
 				

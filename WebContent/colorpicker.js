@@ -32,8 +32,6 @@ function hexToRgb(hex){
 //extracts rgb values from a given element
 function extractValues(element){
 	
-
-	
 	//store values after regex, add comma
 	var extraction = element.style.backgroundColor.match(/\d+/g).toString() + ",";
 	
@@ -61,22 +59,10 @@ function extractValues(element){
 }
 
 
-
-
-
-
-
-
-
-
 var colorpalette = [];
-
-
-
 
 //loads palette from local storage, if any
 function loadPalette(){
-	
 	
 	if(localStorage.getItem("ColorPalette")!=null){
 		
@@ -87,16 +73,8 @@ function loadPalette(){
 			
 			createColorItem(colorpalette[x]);
 		}
-		
-		
 	}
-	
 }
-
-
-
-
-
 
 
 //when hover over add button, show the color picker div
@@ -196,8 +174,6 @@ function selectColors(){
 }
 
 
-
-
 //creates a color item to append to list
 function createColorItem(color){
 	
@@ -207,12 +183,6 @@ function createColorItem(color){
 	colorlist.appendChild(listItem);
 	
 }
-
-
-
-
-
-
 
 
 //functions to add and remove colors from color palette
@@ -231,9 +201,6 @@ function addToColorPalette(){
 			 return results; 
 		}
 		
-		
-		
-		
 		//function that checks if a color exists, if it does, do not create color item
 		function colorExists(hex){
 			
@@ -247,15 +214,11 @@ function addToColorPalette(){
 				if(extractValues(children[x]) == rgbValues){
 					return true; 
 				}
-				
-				
 			}
 			
 			return false;
 			
 		}
-		
-		
 		
 		//on click add to color, and add to array
 		addcolortopalettebutton.addEventListener("click", function(){
@@ -267,9 +230,7 @@ function addToColorPalette(){
 				createColorItem(colorinput.value);
 				colorpalette.push(colorinput.value);
 				localStorage.setItem("ColorPalette", JSON.stringify(colorpalette));
-				
-				
-				
+					
 			}
 		});
 	}
@@ -303,8 +264,6 @@ function removeColorFromStorage(){
 }
 
 
-
-
 //testing color #1174bf
 //function that will remove colors
 //will need to remove from storage as well
@@ -321,9 +280,6 @@ function removeColorFromPalette(){
 			var children = colorlist.children;
 			var selectedChild = null;
 			
-			
-			
-			
 			//remove highlighted child
 			for (var x = 0; x < children.length; x++){
 				if(children[x].style.border == "2px solid grey"){
@@ -331,8 +287,6 @@ function removeColorFromPalette(){
 					colorlist.removeChild(children[x]);
 				}
 			}	
-			
-			
 			
 			/* remove from local storage*/
 			var colorPalettes = JSON.parse(localStorage.getItem("ColorPalette")); //get string array convert to object
@@ -364,11 +318,8 @@ function removeColorFromPalette(){
 			
 			//get all colors in palette and convert to array of elements
 			var allColors = colorlist.children;
-			
-			
-			
+		
 			removeColorFromStorage();
-			
 			
 			//loop through color list items, if there's a matching rgb value remove it from colorlist
 			for(var x = 0; allColors.length; x++){
@@ -385,7 +336,6 @@ function removeColorFromPalette(){
 		}
 		
 	});
-	
 	
 }
 

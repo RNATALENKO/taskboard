@@ -57,7 +57,6 @@ function createTaskElement(title, date, colorcode) {
 	
 	
 	
-	
 	var datespan = document.createElement("SPAN");
 	datespan.appendChild(document.createTextNode(date));
 	datespan.classList.add("datespan");
@@ -199,8 +198,7 @@ function deleteTask(){
 	
 		tasklist.addEventListener("click", function(element){
 			
-			
-			
+		
 			//if the trashwrapper is clicked and a list already exists:
 			if(element.target.getAttribute("id") == "trashwrapper" && localStorage.getItem("TaskList") != null){
 				

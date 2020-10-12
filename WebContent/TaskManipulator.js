@@ -187,7 +187,7 @@ function loadInPalettes(){
 
 /*
  * 
- *   Delete Tasks Operations
+ *   Delete Task Operations
  * 
  */
 
@@ -264,10 +264,31 @@ function deleteTask(){
 
 
 
+/*
+ * 
+ *   change to expanded view operations
+ * 
+ */
 
 
-
-
+function changeView(){
+	
+	
+	tasklist.addEventListener("click", function(element){
+		
+		//if the element clicked has the id wrapper (which is the main body of the task)
+		if(element.target.getAttribute("id") == "wrapper"){
+			
+			
+			
+			//find the element clicks
+			
+			
+		}
+		
+	});
+	
+}
 
 
 

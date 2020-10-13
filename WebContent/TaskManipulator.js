@@ -31,7 +31,7 @@ function loadList(){
 
 
 
-function createTaskElement(title, date, colorcode) {
+function createTaskElement(title, date, colorcode, description) {
 	
 	//Create the elements and add the classes and appropriate text nodes
 	var li = document.createElement("LI");
@@ -41,9 +41,15 @@ function createTaskElement(title, date, colorcode) {
 	flexdiv.classList.add("flex");
 	flexdiv.setAttribute("id", "flex");
 	
-	var titlediv = document.createElement("DIV");
-	titlediv.classList.add("wrapper");
-	titlediv.setAttribute("id", "wrapper");
+	var mainbodydiv = document.createElement("DIV");
+	mainbodydiv.classList.add("wrapper");
+	mainbodydiv.setAttribute("id", "wrapper");
+	
+	//add hidden div to wrapper that contains description
+	var descriptiondiv = document.createElement("DIV");
+	descriptiondiv.appendChild(document.createTextNode(description));
+	descriptiondiv.classList.add("hiddendiv");
+	descriptiondiv.setAttribute("id", "hiddendiv");
 	
 	
 	var headingdiv = document.createElement("H2");
@@ -82,10 +88,11 @@ function createTaskElement(title, date, colorcode) {
 
 	//appending all the created elements to where they belong
 	trashdiv.appendChild(trashspan);
-	titlediv.appendChild(headingdiv);
-	titlediv.appendChild(colorcodespan);
-	titlediv.appendChild(datespan);
-	flexdiv.appendChild(titlediv);
+	mainbodydiv.appendChild(headingdiv);
+	mainbodydiv.appendChild(colorcodespan);
+	mainbodydiv.appendChild(datespan);
+	mainbodydiv.appendChild(descriptiondiv);
+	flexdiv.appendChild(mainbodydiv);
 	flexdiv.appendChild(trashdiv);
 	li.appendChild(flexdiv);
 	tasklist.prepend(li); //will append node as first child to place most recent task ahead of others
@@ -129,10 +136,8 @@ function addATask(){
 		//convert taskarray to string and store in local storage
 		localStorage.setItem("TaskList", JSON.stringify(taskArray));
 		
-		
-		
 		//create the task element passing in arguments
-		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")));
+		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskObject["description"]);
 		
 		//add to the taskId
 		taskId +=1; 
@@ -247,8 +252,7 @@ function deleteTask(){
 					}
 					
 					
-				}
-				
+				}				
 
 				//store the task array back to local storage
 				localStorage.setItem("TaskList", JSON.stringify(taskArray));
@@ -258,14 +262,76 @@ function deleteTask(){
 			}
 				
 		});
+}
+
+
+
+/*
+ * 
+ *  operations for changeing view
+ * 
+ * 
+ */
+
+
+//need function to load in descriptions from task arrays to the hidden divs
+function loadInDescriptions(){
+	
+	var hiddenDivs = null; 
+	var currentObject = null; 
+	
+	//get the stored descriptions
+	if(localStorage.getItem("TaskList")!=null){
+		
+		//get stored objects
+		taskArray = JSON.parse(localStorage.getItem("TaskList"));
+		
+		//get all the hidden divs
+		hiddenDivs = document.getElementsByClassName("hiddendiv");
+		
+		//loop through lenght of task array
+		for(var x = 0; x < taskArray.length; x++){
+		
+			//store object in current task array index
+			currentObject = taskArray[x]; 
+			
+			//set hidden divs inner html to currentobject's description
+			hiddenDivs[x].innerHTML = currentObject["description"];
+		}
+	}
 	
 }
 
 
 
-
-
-
+function changeView(){
+	
+	
+	//click any element on task list
+	tasklist.addEventListener("click", function(element){
+		
+		//run code if element is the wrapper of a task
+		if(element.target.getAttribute("id") == "wrapper"){
+			
+			//get the description of the hidden element div that was clicked
+			var descriptionElement = element.target.lastElementChild;
+			var descriptionText = descriptionElement.innerHTML;
+			
+		
+			//populate the taskinfo html page with clicked elements
+			
+			
+			
+			//change the view to task info page
+			location.href  = "http://localhost:8080/TaskBoard/taskinfo.html";
+			
+			
+		};
+		
+	});
+	
+	
+}
 
 
 

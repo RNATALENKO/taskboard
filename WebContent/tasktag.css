@@ -59,3 +59,8 @@
 .datespan{
 	pointer-events:none;
 }
+
+/*  note: should be hidden*/
+.hiddendiv{
+	display:block;
+}

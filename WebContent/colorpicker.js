@@ -6,7 +6,7 @@
 
 
 /*
- * Need to load the palettes from object list to each front end list item
+ * need to load hex color code from rgb into input text when color is selected, need a function that converts rgb to hex
  * 
  * 
  */

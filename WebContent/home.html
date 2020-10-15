@@ -18,6 +18,45 @@
 
 <style>
 
+
+	.nav{
+		margin:10px; 
+		padding:20px; 
+		border-bottom:1px solid #e3e3e3; 
+		text-align:center; 
+		font-size:30px; 
+		box-shadow:0px 1px 3px #e3e3e3;
+	}
+	
+	
+	.inputcontainer{
+		display:flex; 
+		background-color: 
+		#e3e3e3; 
+		margin:10px;
+	}
+	
+	.titleinput{
+		width:175px; 
+		outline: none; 
+		border:.5px solid black; 
+		display:block; 
+		margin:20px; 
+	}
+	
+	.textbox{
+		width: 175px;
+		 resize:none; 
+		 outline:none; 
+		 margin:20px; 
+		 background-color:white;
+	}
+	
+	.addtaskbutton{
+		margin:20px;
+	}
+	
+
 	/*task spacing on task list*/
 	#tasklist > li {
 		height:80px;
@@ -75,22 +114,22 @@
 <body>
 	
 	<!-- title/nav -->
-	<div style="margin:10px; padding:20px; border-bottom:1px solid #e3e3e3; text-align:center; font-size:30px; box-shadow:0px 1px 3px #e3e3e3; "> My task baord</div>
+	<div class="nav"> My task board</div>
 	
 	
 	<!-- note container  -->
-	<div id="inputcontainer" style="display:flex; background-color: #e3e3e3; margin:10px;">
+	<div  id="inputcontainer" class="inputcontainer">
 	
 		<div style="display:flex; margin:auto;">
 		
-			<div id="notecontainer" style="width:300px;">
-				<input id="titleinput" value="task title " style="width:175px; outline: none; border:.5px solid black; display:block; margin:20px; ">
-				<textarea id="textbox" style="width: 175px; resize:none; outline:none; margin:20px; background-color:white;" rows="10"></textarea>	
+			<div id="notecontainer">
+				<input class="titleinput" id="titleinput" value="task title ">
+				<textarea class="textbox" id="textbox" rows="10"></textarea>	
 			</div>
 			
 			<div id="addnotecontainer">
 				<div>
-					<button id="addtaskbutton" style ="margin:20px;">Add task</button>
+					<button class="addtaskbutton" id="addtaskbutton" >Add task</button>
 				</div>
 				
 				

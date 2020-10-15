@@ -1,5 +1,7 @@
 /**
  * 
+ * need to make the expand container disappear if the title is shorter
+ * 
  */
 
 function test(){
@@ -22,7 +24,4 @@ expandcontainer.addEventListener("click",function(){
 		}
 	});
 
- 	
-   
-	
 }

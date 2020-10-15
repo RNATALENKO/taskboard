@@ -16,6 +16,37 @@
 			border-radius:50%;
 			background-color:white;
 		}
+		
+		
+		.titlecontainer{
+			display:flex; 
+			position:relative;
+		}
+		
+		.titleheading{
+			color:white; 
+			margin:0px; 
+			width:313px; 
+			word-break:break-all; 
+			overflow:hidden; 
+			background-color:orange;
+		}
+		
+		.expandcontainer{
+		
+			width:8%; 
+			padding-top:10px; 
+			padding-bottom:5px; 
+			background-color:green; 
+			display:flex; 
+			cursor: pointer;
+			justify-content:space-between;
+			height:10px; 
+			position:absolute; 
+			bottom:0%; 
+			right:0%;
+		
+		}
 
 
 </style>
@@ -35,13 +66,13 @@
 
 	<div id="taskcontainer" style="background-color:blue; display:inline-block;text-align:left; margin-top:250px;">
 	
-		<div id="titlecontainer" style="display:flex; position:relative;">
+		<div id="titlecontainer" class="titlecontainer">
 		
 		<!-- when dots are clicked change no wrap to wrap, to show the long title -->
-			<h1 id="titleheading"  style="color:white; margin:0px; width:313px; white-space:nowrap; word-break:break-all; overflow:hidden; background-color:orange;">This is a very long title that I don't know what would happen, but seems to be, working well</h1>
+			<h1 id="titleheading" class="titleheading" style="white-space:nowrap;">This is a very long title that I don't know what would happen, but seems to be, working well</h1>
 			
 			<!-- make the dots appear only if the title is longer then the width of heading container -->
-			<span id="expandcontainer" style="width:8%; padding-top:10px; padding-bottom:5px; background-color:green; display:flex; cursor: pointer;justify-content:space-between; height:10px; position:absolute; bottom:0%; right:0%;">
+			<span id="expandcontainer" class="expandcontainer">
 					<span class="dot"></span>
 					<span class="dot"></span>
 					<span class="dot"></span>

@@ -1,11 +1,21 @@
 /**
  * 
  *  Add tasks operations
+ *  
+ *  TO DO's
+ *  validate: make sure when adding task check to see if task already exists, if it exists do not add
+ *  better interface: make sure to clear inputs after "add task button is clicked"
+ *  add a way to undo a deleted task. 
+ *  set priorities to a task and be able to organize the task based on priority
+ *  drag and drop system
+ *  make the design more efficient and fit onto one panel
+ *  
  * 
  */
 
 
 var taskArray = [];
+
 
 //checks to see if list in storage, if it is then load it
 function loadList(){
@@ -31,7 +41,7 @@ function loadList(){
 
 
 
-function createTaskElement(title, date, colorcode, description) {
+function createTaskElement(title, date, colorcode, description, timeformat) {
 	
 	//Create the elements and add the classes and appropriate text nodes
 	var li = document.createElement("LI");
@@ -45,11 +55,7 @@ function createTaskElement(title, date, colorcode, description) {
 	mainbodydiv.classList.add("wrapper");
 	mainbodydiv.setAttribute("id", "wrapper");
 	
-	//add hidden div to wrapper that contains description
-	var descriptiondiv = document.createElement("DIV");
-	descriptiondiv.appendChild(document.createTextNode(description));
-	descriptiondiv.classList.add("hiddendiv");
-	descriptiondiv.setAttribute("id", "hiddendiv");
+	
 	
 	
 	var headingdiv = document.createElement("H2");
@@ -67,6 +73,18 @@ function createTaskElement(title, date, colorcode, description) {
 	datespan.appendChild(document.createTextNode(date));
 	datespan.classList.add("datespan");
 	datespan.setAttribute("id", "date");
+	
+	var timespan = document.createElement("SPAN");
+	timespan.appendChild(document.createTextNode(timeformat));
+	timespan.classList.add("timespan");
+	timespan.setAttribute("id", "timeformat");
+	
+	
+	//add hidden div to wrapper that contains description
+	var descriptiondiv = document.createElement("DIV");
+	descriptiondiv.appendChild(document.createTextNode(description));
+	descriptiondiv.classList.add("hiddendiv");
+	descriptiondiv.setAttribute("id", "hiddendiv");
 	
 	
 	var headingText = document.createTextNode(title);
@@ -91,6 +109,7 @@ function createTaskElement(title, date, colorcode, description) {
 	mainbodydiv.appendChild(headingdiv);
 	mainbodydiv.appendChild(colorcodespan);
 	mainbodydiv.appendChild(datespan);
+	mainbodydiv.appendChild(timespan);
 	mainbodydiv.appendChild(descriptiondiv);
 	flexdiv.appendChild(mainbodydiv);
 	flexdiv.appendChild(trashdiv);
@@ -111,12 +130,10 @@ function addATask(){
 	}
 
 	
-	
 	addtaskbutton.addEventListener("click", function(){
 		
 		//date object
 		var date = new Date(); 
-		alert(date.getMonth() + "/"+  date.getDate() +  "/"+ date.getFullYear());
 		
 		//capture title, description, date and turn to object
 		var taskObject = {
@@ -124,7 +141,9 @@ function addATask(){
 				"description": textbox.value,
 				"taskId": taskId,
 				"date": date.getMonth() +1 + "/" + date.getDate() + "/" + date.getFullYear(),
-				"colorcode": JSON.parse(localStorage.getItem("SelectedColor"))
+				"colorcode": JSON.parse(localStorage.getItem("SelectedColor")),
+				"timestamp": date.getTime(),
+				"timeformat": date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
 		};
 		
 		//convert object to string, and display, for visual
@@ -137,7 +156,7 @@ function addATask(){
 		localStorage.setItem("TaskList", JSON.stringify(taskArray));
 		
 		//create the task element passing in arguments
-		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskObject["description"]);
+		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskObject["description"], taskObject["timeformat"]);
 		
 		//add to the taskId
 		taskId +=1; 
@@ -184,7 +203,29 @@ function loadInPalettes(){
 	}
 }
 
+
+//function that loads in times from the list
+function loadInTimes(){
 	
+	timeFormatItems = null; 
+	
+	if(localStorage.getItem("TaskList")!=null){
+		
+		taskArray = JSON.parse(localStorage.getItem("TaskList"));
+		timeFormatItems = document.getElementsByClassName("timespan");
+		
+		for(var x = 0; x < taskArray.length; x++){
+			
+			var currentObject = taskArray[x];
+			var currentObjectTime = currentObject["timeformat"];
+			var currentHtml = timeFormatItems[x];
+			currentHtml.innerHTML = currentObjectTime;
+			
+		}
+		
+	}
+	
+}
 
 
 
@@ -268,7 +309,7 @@ function deleteTask(){
 
 /*
  * 
- *  operations for changeing view
+ *  load description operations
  * 
  * 
  */
@@ -302,62 +343,15 @@ function loadInDescriptions(){
 	
 }
 
+
+
+
+
 /*
  * 
- *   change to expanded view operations
+ * update task description or title operations
  * 
  */
-
-
-function changeView(){
-	
-	
-<<<<<<< HEAD
-	tasklist.addEventListener("click", function(element){
-		
-		//if the element clicked has the id wrapper (which is the main body of the task)
-		if(element.target.getAttribute("id") == "wrapper"){
-			
-			
-			
-			//find the element clicks
-			
-			
-		}
-		
-	});
-	
-}
-=======
-	//click any element on task list
-	tasklist.addEventListener("click", function(element){
-		
-		//run code if element is the wrapper of a task
-		if(element.target.getAttribute("id") == "wrapper"){
-			
-			//get the description of the hidden element div that was clicked
-			var descriptionElement = element.target.lastElementChild;
-			var descriptionText = descriptionElement.innerHTML;
-			
-		
-			//populate the taskinfo html page with clicked elements
-			
-			
-			
-			//change the view to task info page
-			location.href  = "http://localhost:8080/TaskBoard/taskinfo.html";
-			
-			
-		};
-		
-	});
-	
-	
-}
-
-
->>>>>>> changeview
-
 
 
 

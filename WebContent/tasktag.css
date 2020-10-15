@@ -60,7 +60,12 @@
 	pointer-events:none;
 }
 
+.timespan{
+	margin-left:20px; 
+	pointer-events:none;
+}
+
 /*  note: should be hidden*/
 .hiddendiv{
-	display:block;
+	display:none;
 }

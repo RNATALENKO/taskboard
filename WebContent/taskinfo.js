@@ -11,14 +11,14 @@ function test(){
 function expandTitle(){
 	
 expandcontainer.addEventListener("click",function(){
-		
-		currentValue = tc.style.whiteSpace; 
+	
+		currentValue = titleheading.style.whiteSpace; 
 		
 		if(currentValue == "nowrap"){
-			tc.style.whiteSpace = "pre-wrap";
+			titleheading.style.whiteSpace = "pre-wrap";
 		}
 		else if(currentValue == "pre-wrap"){
-			tc.style.whiteSpace = "nowrap";
+			titleheading.style.whiteSpace = "nowrap";
 		}
 	});
 

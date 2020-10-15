@@ -11,8 +11,9 @@
 <link rel = "stylesheet" type = "text/css" href = "tasktag.css" />
 
 
-<script type="text/javascript" src="colorpicker.js"></script>
-<script type="text/javascript" src="TaskManipulator.js"></script>
+<script src="colorpicker.js"></script>
+<script src="TaskManipulator.js"></script>
+<script src="changeview.js"></script>
 
 
 <style>
@@ -55,8 +56,9 @@
 	}
 	
 	li{
-	cursor:pointer;
+		cursor:pointer;
 	}
+	
 	
 	
 	
@@ -165,9 +167,11 @@
 							<div id ="wrapper" class="wrapper"> 
 							
 								<h2 id="tasktitle" class="tasktitle">This is a long </h2>
-								<span class="colorcode"></span>
-								<span>date</span>
+								<span id="colorcode" class="colorcode"></span>
+								<span id="date class="datespan">date</span>
+								<span id="title" class="timespan>time</span>
 								<div id="hiddendescription" class="hiddendiv"></div>
+					
 							</div>
 							
 							<div id="trashwrapper" class="trashwrapper" >
@@ -185,14 +189,11 @@
 		</div>
 		
 		
-		<script>loadList(); addATask(); loadInPalettes(); removeTask();</script>
+		<script>loadList(); addATask(); loadInPalettes(); loadInTimes(); removeTask();</script>
 		<script>loadInDescriptions();</script>
 		<script>deleteTask();</script>
 		<script>changeView();</script>
-<<<<<<< HEAD
-=======
-		
->>>>>>> changeview
+
 		
 		
 	

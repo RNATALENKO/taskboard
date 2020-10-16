@@ -4,6 +4,15 @@
  * 
  */
 
+function changeViewTest(){
+	alert("change view funciton");
+}
+
+var num = 1000;
+
+function returnNum(){
+	return num; 
+}
 
 var taskArray = [];
 var clickedElement = null;

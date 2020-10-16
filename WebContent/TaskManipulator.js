@@ -3,7 +3,7 @@
  *  Add tasks operations
  *  
  *  TO DO's
- *  validate: make sure when adding task check to see if task already exists, if it exists do not add
+ * 
  *  better interface: make sure to clear inputs after "add task button is clicked"
  *  add a way to undo a deleted task. 
  *  set priorities to a task and be able to organize the task based on priority
@@ -36,6 +36,8 @@ function loadList(){
 			
 	}
 }
+
+
 
 
 
@@ -118,7 +120,9 @@ function createTaskElement(title, date, colorcode, description, timeformat) {
 }
 
 
-function addATask(){
+//this function creates a task object, creates an element in the front end, then stores the objects locally
+//this is the main functionality
+function storeTask(){
 	
 	var taskId = 0; 
 	
@@ -128,45 +132,84 @@ function addATask(){
 	else{
 		taskId = 0; 
 	}
+	
+	//date object
+	var date = new Date(); 
+	
+	//capture title, description, date and turn to object
+	var taskObject = {
+			"title": titleinput.value,
+			"description": textbox.value,
+			"taskId": taskId,
+			"date": date.getMonth() +1 + "/" + date.getDate() + "/" + date.getFullYear(),
+			"colorcode": JSON.parse(localStorage.getItem("SelectedColor")),
+			"timestamp": date.getTime(),
+			"timeformat": date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+	};
+	
+	//convert object to string, and display, for visual
+	alert(JSON.stringify(taskObject,"\t",2));
+	
+	//use unshift to add the most recent item to beginning of array
+	taskArray.unshift(taskObject);
+	
+	//convert taskarray to string and store in local storage
+	localStorage.setItem("TaskList", JSON.stringify(taskArray));
+	
+	//create the task element passing in arguments
+	createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskObject["description"], taskObject["timeformat"]);
+	
+	//add to the taskId
+	taskId +=1; 
+	
+	//store task id into local storage
+	localStorage.setItem("CurrentTaskID", JSON.stringify(taskId));
+	
+}
 
+
+
+
+//inputs stored task array, and current description input, checks to see if task exists, outputs boolean
+function taskExists(list, descriptionInput){
+	
+	//loop through task array
+	for(var x = 0; x < list.length; x++){
+		
+		var currentObject = list[x];
+		
+		var currentDescription = currentObject["description"];
+		
+		if(descriptionInput == currentDescription){
+			return true;
+		}
+	
+	}
+}
+
+
+
+//main function to add a task into storage/view
+function addATask(){
 	
 	addtaskbutton.addEventListener("click", function(){
 		
-		//date object
-		var date = new Date(); 
+		//validation if no list exists store the task
+		var list = getList("TaskList");
 		
-		//capture title, description, date and turn to object
-		var taskObject = {
-				"title": titleinput.value,
-				"description": textbox.value,
-				"taskId": taskId,
-				"date": date.getMonth() +1 + "/" + date.getDate() + "/" + date.getFullYear(),
-				"colorcode": JSON.parse(localStorage.getItem("SelectedColor")),
-				"timestamp": date.getTime(),
-				"timeformat": date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
-		};
-		
-		//convert object to string, and display, for visual
-		alert(JSON.stringify(taskObject,"\t",2));
-		
-		//use unshift to add the most recent item to beginning of array
-		taskArray.unshift(taskObject);
-		
-		//convert taskarray to string and store in local storage
-		localStorage.setItem("TaskList", JSON.stringify(taskArray));
-		
-		//create the task element passing in arguments
-		createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskObject["description"], taskObject["timeformat"]);
-		
-		//add to the taskId
-		taskId +=1; 
-		
-		//store task id into local storage
-		localStorage.setItem("CurrentTaskID", JSON.stringify(taskId));
-		
-		
+		if(list == null){
+			storeTask(); 
+		}
+		//if list exists
+		else if (list != null){
+			
+			//check if a task description doesn't exist, if no, store task
+			if(taskExists(list, textbox.value) != true){
+				storeTask(); 
+			}
+		}
+				
 	});
-	
 }
 
 

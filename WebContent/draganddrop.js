@@ -21,11 +21,13 @@ console.log("draggable elements: ");
 console.log(draggables);
 
 var draggedElement = null; 
+var completedlist = document.getElementById("completedlist");
 
 //get the drop zone
-var dropzone = document.getElementById("completedlist");
+
+var dropzones = document.querySelectorAll(".dropzone");
 console.log("dropzone: ");
-console.log(dropzone);
+console.log(dropzones);
 
 //add the drag start
 draggables.forEach(function(draggable){
@@ -51,16 +53,29 @@ draggables.forEach(function(draggable){
 
 
 
+dropzones.forEach(function(dropzone){
+	
+	dropzone.addEventListener("dragover", function(){
+		draggedElement = document.querySelector(".dragging");
+		dropzone.appendChild(draggedElement);
 
-
-dropzone.addEventListener("dragover", function(){
-	
-	
-	
+	});
 });
 
 
+
+
+
+
 //on the drop, we append the element, afterward we remove from tasklist in local storage, then add to completed list in local storage
+
+
+
+
+
+//functio to load completed list
+
+
 
 
 

@@ -67,15 +67,7 @@
 	}
 	
 
-	/*task spacing on task list*/
-	#completedlist > li {
-		height:80px;
-		width:250px;
-		margin:20px;
-		margin-bottom:0px;
-		margin-right:0px;
-		background-color: yellow;
-	}
+	
 	
 	h2{
 		overflow:hidden;
@@ -104,7 +96,7 @@
 	}
 	
 	
-	/*completed list styling*/
+	/*list styling*/
 	.tasklist > li {
 		height:80px;
 		width:250px;
@@ -130,6 +122,7 @@
 	/*dragged element opacity*/
 	.draggable.dragging{
 		opacity: .5; 
+
 	}
 	
 	
@@ -220,7 +213,7 @@
 	<!-- open/finished tasks view -->
 	<div id="maintaskcontainer" style="background-color:lightgrey; margin:10px; display:flex;">
 	
-		<div id="opentaskcontainer" class="opentaskcontainer" style="width: 960px; background-color:lightgreen;">
+		<div id="opentaskcontainer" class="opentaskcontainer dropzone" style="width: 960px; background-color:lightgreen;">
 			
 			<h3 class="taskcontainerheader">Open tasks</h3>
 			
@@ -232,7 +225,7 @@
 				
 				
 					<!--sample task item
-					<li>
+					<li id="listitem" draggable="true" class="draggable">
 						<div class="flex">
 						
 							<div id ="wrapper" class="wrapper"> 
@@ -268,11 +261,11 @@
 		
 		
 	
-		<div id="finishedtaskcontainer" style="width: 960px; background-color:grey;">
+		<div id="finishedtaskcontainer" class="dropzone" style="width: 960px; background-color:grey; list-style:none;">
 		
 			<h3 class="taskcontainerheader">finished tasks</h3>
 		
-			<ul id="completedlist" class="tasklist lidisplay">
+			<ul id="completedlist" style="padding:20px; list-style:none; display:flex; flex-wrap:wrap;">
 			
 			</ul>
 		

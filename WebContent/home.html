@@ -14,6 +14,8 @@
 <script src="colorpicker.js"></script>
 <script src="TaskManipulator.js"></script>
 <script src="changeview.js"></script>
+<script src="draganddrop.js" defer></script>
+
 
 
 <style>
@@ -56,9 +58,17 @@
 		margin:20px;
 	}
 	
+	.lidisplay{
+		list-style:none; 
+		padding-left:10px; 
+		width:150px; 
+		display:flex; 
+		flex-wrap:wrap;
+	}
+	
 
 	/*task spacing on task list*/
-	#tasklist > li {
+	#completedlist > li {
 		height:80px;
 		width:250px;
 		margin:20px;
@@ -77,12 +87,7 @@
 		
 		ul.tasklist{
 			transform: scale(.9);
-			margin-left:30px;
-		}
-		
-		.opentaskcontainer{
-		
-			background-color:yellow;
+			
 		}
 		
 	}
@@ -99,6 +104,33 @@
 	}
 	
 	
+	/*completed list styling*/
+	.tasklist > li {
+		height:80px;
+		width:250px;
+		margin:20px;
+		margin-bottom:0px;
+		margin-right:0px;
+		background-color: yellow;
+	}
+	
+	
+	/*task containers*/
+	
+	
+	
+	.taskcontainerheader{
+		text-align: center;
+		 padding:20px; 
+		 background-color:orange;
+		 margin-top:0px;
+	}
+	
+	
+	/*dragged element opacity*/
+	.draggable.dragging{
+		opacity: .5; 
+	}
 	
 	
 
@@ -146,7 +178,7 @@
 		
 						<div id="colorpicker" style="background-color:orange;  display:none; border-radius:10px 10px 10px 10px; position:absolute;">
 							
-							<ul id="colorlist" style="list-style:none; padding-left:10px; width:150px; display:flex; flex-wrap:wrap;">
+							<ul id="colorlist" class="lidisplay">
 								<li style="background-color:#eb4034;"></li>
 								<li style="background-color:#62eb34;"></li>
 								<li style="background-color:#e5eb34;"></li>
@@ -190,7 +222,7 @@
 	
 		<div id="opentaskcontainer" class="opentaskcontainer" style="width: 960px; background-color:lightgreen;">
 			
-			<h3 style="text-align: center; padding:20px; background-color:orange; margin-top:0px;">Open tasks</h3>
+			<h3 class="taskcontainerheader">Open tasks</h3>
 			
 			
 			
@@ -228,7 +260,7 @@
 		</div>
 		
 		
-		<script>loadList(); addATask(); loadInPalettes(); loadInTimes(); removeTask();</script>
+		<script>loadList(); addATask(); loadInPalettes(); loadInTimes();</script>
 		<script>loadInDescriptions();</script>
 		<script>deleteTask();</script>
 		<script>changeView();</script>
@@ -236,9 +268,17 @@
 		
 		
 	
-		<div id="finishedtaskcontainer" style="width:50%; height: 500px; ">
+		<div id="finishedtaskcontainer" style="width: 960px; background-color:grey;">
+		
+			<h3 class="taskcontainerheader">finished tasks</h3>
+		
+			<ul id="completedlist" class="tasklist lidisplay">
+			
+			</ul>
 		
 		</div>
+		
+	
 	
 	
 	</div>

@@ -58,8 +58,6 @@ function createTaskElement(title, date, colorcode, description, timeformat) {
 	mainbodydiv.setAttribute("id", "wrapper");
 	
 	
-	
-	
 	var headingdiv = document.createElement("H2");
 	headingdiv.classList.add("tasktitle");
 	headingdiv.setAttribute("id", "tasktitle");
@@ -116,6 +114,9 @@ function createTaskElement(title, date, colorcode, description, timeformat) {
 	flexdiv.appendChild(mainbodydiv);
 	flexdiv.appendChild(trashdiv);
 	li.appendChild(flexdiv);
+	li.setAttribute("draggable", "true");
+	li.setAttribute("id", "listitem");
+	li.classList.add("draggable");
 	tasklist.prepend(li); //will append node as first child to place most recent task ahead of others
 }
 
@@ -208,6 +209,11 @@ function addATask(){
 				storeTask(); 
 			}
 		}
+		
+		//clear the inputs 
+		titleinput.value = "";
+		textbox.value = "";
+		
 				
 	});
 }

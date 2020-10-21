@@ -56,8 +56,18 @@ draggables.forEach(function(draggable){
 dropzones.forEach(function(dropzone){
 	
 	dropzone.addEventListener("dragover", function(){
+		
+		
 		draggedElement = document.querySelector(".dragging");
-		dropzone.appendChild(draggedElement);
+		console.log("dragged Element: ");
+		console.log(draggedElement);
+		
+		/*errors here*/
+		//drop the dragged element and append it to the list
+		var dropzonelist = dropzone.lastElementChild; //causing null
+		console.log("list to append: ");
+		console.log(dropzonelist);
+		dropzonelist.appendChild(draggedElement);
 
 	});
 });

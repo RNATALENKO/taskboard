@@ -109,13 +109,20 @@
 	
 	/*task containers*/
 	
-	
-	
+
 	.taskcontainerheader{
 		text-align: center;
 		 padding:20px; 
 		 background-color:orange;
 		 margin-top:0px;
+	}
+	
+	
+	
+	.completedlist{
+		list-style:none; 
+		display:flex; 
+		flex-wrap:wrap;
 	}
 	
 	
@@ -264,7 +271,7 @@
 		
 			<h3 class="taskcontainerheader">finished tasks</h3>
 		
-			<ul id="completedlist" style="padding:20px; list-style:none; display:flex; flex-wrap:wrap;">
+			<ul id="completedlist" class=".completedlist">
 			
 			</ul>
 		

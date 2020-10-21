@@ -53,20 +53,30 @@ draggables.forEach(function(draggable){
 
 
 
+
+//add the css classes of opentaskcontainer to the completed list to format the items
+completedlist.classList.add("tasklist");
+completedlist.classList.add("completedlist");
+
+
+
+//loop through drop zone elements
 dropzones.forEach(function(dropzone){
 	
+	//on the dragover event
 	dropzone.addEventListener("dragover", function(){
 		
-		
+		//get dragged element (currently contains dragging class)
 		draggedElement = document.querySelector(".dragging");
 		console.log("dragged Element: ");
 		console.log(draggedElement);
 		
-		/*errors here*/
-		//drop the dragged element and append it to the list
+		//get the current dropzone unordered list
 		var dropzonelist = dropzone.lastElementChild; //causing null
 		console.log("list to append: ");
 		console.log(dropzonelist);
+		
+		//append the current dragged element to the list
 		dropzonelist.appendChild(draggedElement);
 
 	});

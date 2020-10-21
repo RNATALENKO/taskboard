@@ -10,6 +10,9 @@
  *  drag and drop system
  *  make the design more efficient and fit onto one panel
  *  
+ *  
+ *  bug fix:
+ *  timestamp div not getting argument from createTaskElement() method
  * 
  */
 
@@ -42,12 +45,14 @@ function loadList(){
 
 
 
-
-function createTaskElement(title, date, colorcode, description, timeformat) {
+//note timestamp is getting left undefined, argument not binding to variable
+function createTaskElement(title, date, colorcode, description, timeformat, timestamp) {
+	
 	
 	//Create the elements and add the classes and appropriate text nodes
 	var li = document.createElement("LI");
 	li.setAttribute("id", "li");
+	li.classList.add("marginleft");
 	
 	var flexdiv = document.createElement("DIV");
 	flexdiv.classList.add("flex");
@@ -66,7 +71,7 @@ function createTaskElement(title, date, colorcode, description, timeformat) {
 	var colorcodespan = document.createElement("SPAN");
 	colorcodespan.classList.add("colorcode");
 	colorcodespan.style.backgroundColor = colorcode; 
-	
+	colorcodespan.setAttribute("id", "colorcode");
 	
 	
 	var datespan = document.createElement("SPAN");
@@ -85,6 +90,12 @@ function createTaskElement(title, date, colorcode, description, timeformat) {
 	descriptiondiv.appendChild(document.createTextNode(description));
 	descriptiondiv.classList.add("hiddendiv");
 	descriptiondiv.setAttribute("id", "hiddendiv");
+	
+	
+	var timestampdiv = document.createElement("DIV");
+	timestampdiv.appendChild(document.createTextNode(timestamp));
+	timestampdiv.style.display = "none";
+	timestampdiv.setAttribute("id", "timestamp");
 	
 	
 	var headingText = document.createTextNode(title);
@@ -111,6 +122,9 @@ function createTaskElement(title, date, colorcode, description, timeformat) {
 	mainbodydiv.appendChild(datespan);
 	mainbodydiv.appendChild(timespan);
 	mainbodydiv.appendChild(descriptiondiv);
+	mainbodydiv.appendChild(timestampdiv);
+	
+	
 	flexdiv.appendChild(mainbodydiv);
 	flexdiv.appendChild(trashdiv);
 	li.appendChild(flexdiv);
@@ -158,7 +172,7 @@ function storeTask(){
 	localStorage.setItem("TaskList", JSON.stringify(taskArray));
 	
 	//create the task element passing in arguments
-	createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskObject["description"], taskObject["timeformat"]);
+	createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskObject["description"], taskObject["timeformat"], "parameter not binding to timestamp");
 	
 	//add to the taskId
 	taskId +=1; 
@@ -214,6 +228,8 @@ function addATask(){
 		titleinput.value = "";
 		textbox.value = "";
 		
+		//reload the page so the drag and drop system activates
+		location.reload();
 				
 	});
 }

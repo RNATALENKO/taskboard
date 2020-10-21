@@ -84,17 +84,36 @@ dropzones.forEach(function(dropzone){
 
 
 
+//store finished tasks
+//get the unordered list list items
+var listItems = completedlist.querySelector("LI");
+
+
+//empty completed 
+var completedtask = null; 
+
+
+//extract the values from each list item and transfer to object
+listItems.forEach(function(listItem){
+	//set the object's data
+	completedtask.title =  listItem.getElementById("tasktitle").innerHTML; 
+	completedtask.description = listItem.getElementById("hiddendiv").innerHTML;
+	completedtask.date = listItem.getElementById("date").innerHTML;
+	completedtask.colorcode = listItem.getElementById("colorcode").innerHTML;
+	completedtask.timestamp = listItem.getElementById("timestamp").innerHTML;
+	completedtask.timeformat = listItem.getElementById("timeformat").innerHTML;
+	
+});
 
 
 
-//on the drop, we append the element, afterward we remove from tasklist in local storage, then add to completed list in local storage
+//update in other task list
 
 
 
 
 
-//functio to load completed list
-
+//load tasks at beginning
 
 
 

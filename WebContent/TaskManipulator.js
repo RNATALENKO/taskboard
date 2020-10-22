@@ -34,7 +34,7 @@ function loadList(){
 			
 			var currentObject = taskArray[x];
 			
-			createTaskElement(currentObject["title"], currentObject["date"]);
+			createTaskElement(currentObject["title"], currentObject["date"]); //needs more to load
 		}
 			
 	}
@@ -85,6 +85,7 @@ function createTaskElement(title, date, colorcode, description, timeformat, time
 	timespan.setAttribute("id", "timeformat");
 	
 	
+	
 	//add hidden div to wrapper that contains description
 	var descriptiondiv = document.createElement("DIV");
 	descriptiondiv.appendChild(document.createTextNode(description));
@@ -92,10 +93,7 @@ function createTaskElement(title, date, colorcode, description, timeformat, time
 	descriptiondiv.setAttribute("id", "hiddendiv");
 	
 	
-	var timestampdiv = document.createElement("DIV");
-	timestampdiv.appendChild(document.createTextNode(timestamp));
-	timestampdiv.style.display = "none";
-	timestampdiv.setAttribute("id", "timestamp");
+
 	
 	
 	var headingText = document.createTextNode(title);
@@ -122,7 +120,7 @@ function createTaskElement(title, date, colorcode, description, timeformat, time
 	mainbodydiv.appendChild(datespan);
 	mainbodydiv.appendChild(timespan);
 	mainbodydiv.appendChild(descriptiondiv);
-	mainbodydiv.appendChild(timestampdiv);
+	
 	
 	
 	flexdiv.appendChild(mainbodydiv);
@@ -171,8 +169,11 @@ function storeTask(){
 	//convert taskarray to string and store in local storage
 	localStorage.setItem("TaskList", JSON.stringify(taskArray));
 	
+	
+	var colorcode = JSON.parse(localStorage.getItem("SelectedColor"));
+	
 	//create the task element passing in arguments
-	createTaskElement(taskObject["title"], taskObject["date"], JSON.parse(localStorage.getItem("SelectedColor")), taskObject["description"], taskObject["timeformat"], "parameter not binding to timestamp");
+	createTaskElement(taskObject["title"], taskObject["date"], colorcode, taskObject["description"], taskObject["timeformat"], taskObject["timestamp"]);
 	
 	//add to the taskId
 	taskId +=1; 
